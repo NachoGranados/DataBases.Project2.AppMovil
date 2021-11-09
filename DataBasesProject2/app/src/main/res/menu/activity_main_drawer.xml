@@ -4,17 +4,31 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_home"
             android:title="@string/menu_home" />
+
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:id="@+id/measurementsFragment"
+            android:icon="@drawable/ic_accessibility"
+            android:title="Measurements" />
+
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/foodConsumptionFragment"
+            android:icon="@drawable/ic_flatware"
+            android:title="Food Consumption" />
+
+        <item
+            android:id="@+id/productsFragment"
+            android:icon="@drawable/ic_shopping_cart"
+            android:title="Products" />
+
+        <item
+            android:id="@+id/recipesFragment"
+            android:icon="@drawable/ic_room_service"
+            android:title="Recipes" />
+
     </group>
 </menu>

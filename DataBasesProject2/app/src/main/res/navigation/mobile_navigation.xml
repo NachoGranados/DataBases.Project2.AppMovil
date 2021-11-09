@@ -12,14 +12,24 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.nutritec.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
+        android:id="@+id/measurementsFragment"
+        android:name="com.example.nutritec.MeasurementsFragment"
+        android:label="fragment_measurements"
+        tools:layout="@layout/fragment_measurements" />
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.nutritec.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/foodConsumptionFragment"
+        android:name="com.example.nutritec.FoodConsumptionFragment"
+        android:label="fragment_food_consumption"
+        tools:layout="@layout/fragment_food_consumption" />
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.example.nutritec.ProductsFragment"
+        android:label="fragment_products"
+        tools:layout="@layout/fragment_products" />
+    <fragment
+        android:id="@+id/recipesFragment"
+        android:name="com.example.nutritec.RecipesFragment"
+        android:label="fragment_recipes"
+        tools:layout="@layout/fragment_recipes" />
+
 </navigation>
