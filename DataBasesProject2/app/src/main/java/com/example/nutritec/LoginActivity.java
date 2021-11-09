@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //openRegisterActivity();
+                openMainActivity();
 
             }
 
@@ -54,6 +54,14 @@ public class LoginActivity extends AppCompatActivity {
     private void openRegisterActivity() {
 
         Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+
+    }
+
+    // Opens the activity where the user navigate through the app
+    private void openMainActivity() {
+
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
 
     }
