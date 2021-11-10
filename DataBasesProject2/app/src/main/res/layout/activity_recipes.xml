@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
-    tools:context=".MainActivity">
+    tools:context=".RecipesActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Home"
+            android:text="Recipes"
             android:textSize="50sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -28,8 +28,7 @@
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/white">
+        android:layout_gravity="start">
 
         <include
             layout="@layout/main_nav_drawer"/>

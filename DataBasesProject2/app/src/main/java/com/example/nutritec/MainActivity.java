@@ -1,61 +1,163 @@
 package com.example.nutritec;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Menu;
-
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.nutritec.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppBarConfiguration mAppBarConfiguration;
-    private ActivityMainBinding binding;
+    // Variables to control XML items
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        // Variables assignment to control XML items
+        drawerLayout = findViewById(R.id.drawer_layout);
 
-        setSupportActionBar(binding.appBarMain.toolbar);
+    }
 
-        DrawerLayout drawer = binding.drawerLayout;
-        NavigationView navigationView = binding.navView;
+    public void ClickMenu(View view) {
 
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.measurementsFragment, R.id.foodConsumptionFragment, R.id.productsFragment, R.id.recipesFragment)
-                .setOpenableLayout(drawer)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
+        // Open drawer
+        openDrawer(drawerLayout);
+
+    }
+
+    public static void openDrawer(DrawerLayout drawerLayout) {
+
+        // Open drawer layout
+        drawerLayout.openDrawer(GravityCompat.START);
+
+    }
+
+    public void ClickLogo(View view) {
+
+        // Close drawer
+        closeDrawer(drawerLayout);
+
+    }
+
+    public static void closeDrawer(DrawerLayout drawerLayout) {
+
+        // Close drawer layout
+        if( drawerLayout.isDrawerOpen(GravityCompat.START)) {
+
+            // When drawer is open, close it
+            drawerLayout.closeDrawer(GravityCompat.START);
+
+        }
+
+    }
+
+    public void ClickHome(View view) {
+
+        // Recreate activity
+        recreate();
+
+    }
+
+    public void ClickFoodConsumption(View view) {
+
+        // Redirect to food consumption
+        redirectActivity(this, FoodConsumptionActivity.class);
+
+    }
+
+    public void ClickRecipes(View view) {
+
+        // Redirect to recipes
+        redirectActivity(this, RecipesActivity.class);
+
+    }
+
+    public void ClickLogout(View view) {
+
+        // Close app
+        logout(this);
+
+    }
+
+    public static void logout(Activity activity) {
+
+        // Initialize alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+
+        // Set tittle
+        builder.setTitle("Are you sure you want to logout?");
+
+        // Positive yes button
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                // Finish activity
+                activity.finishAffinity();
+
+                // Exit app
+                System.exit(0);
+
+            }
+        });
+
+        // Negative no button
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                // Dismiss dialog
+                dialogInterface.dismiss();
+
+            }
+        });
+
+        // Show dialog
+        builder.show();
+
+    }
+
+    public static void redirectActivity(Activity activity, Class activityClass) {
+
+        // Initialize intent
+        Intent intent = new Intent(activity, activityClass);
+
+        // Set flag
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        // Start activity
+        activity.startActivity(intent);
 
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+    protected void onPause() {
+        super.onPause();
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
+        // Close drawer
+        closeDrawer(drawerLayout);
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
