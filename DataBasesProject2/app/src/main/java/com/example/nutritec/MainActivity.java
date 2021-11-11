@@ -11,6 +11,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.nutritec.food.consumption.FoodConsumptionActivity;
+import com.example.nutritec.recipes.RecipesActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     // Variables to control XML items
@@ -108,9 +111,6 @@ public class MainActivity extends AppCompatActivity {
 
                 // Finish activity
                 activity.finish();
-
-                // Exit app
-                //System.exit(0);
 
             }
         });

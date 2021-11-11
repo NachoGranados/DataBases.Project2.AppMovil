@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
-    tools:context=".FoodConsumptionActivity">
+    tools:context=".food.consumption.FoodConsumptionActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -134,7 +134,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewFoodConsumption"
                     android:layout_width="match_parent"
-                    android:layout_height="240dp"
+                    android:layout_height="230dp"
                     android:layout_marginTop="16dp" />
 
             </LinearLayout>

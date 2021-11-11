@@ -13,10 +13,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
-            android:name=".FoodConsumptionAddRecipeActivity"
+            android:name=".recipes.RecipesAddRecipeActivity"
             android:exported="false" />
         <activity
-            android:name=".FoodConsumptionAddProductActivity"
+            android:name=".recipes.RecipesAddProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".recipes.RecipesDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".food.consumption.FoodConsumptionAddRecipeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".food.consumption.FoodConsumptionAddProductActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
@@ -31,10 +40,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RecipesActivity"
+            android:name=".recipes.RecipesActivity"
             android:exported="true" />
         <activity
-            android:name=".FoodConsumptionActivity"
+            android:name=".food.consumption.FoodConsumptionActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

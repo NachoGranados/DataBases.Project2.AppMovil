@@ -1,4 +1,4 @@
-package com.example.nutritec;
+package com.example.nutritec.food.consumption;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -9,6 +9,10 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.nutritec.MainActivity;
+import com.example.nutritec.R;
+import com.example.nutritec.recipes.RecipesActivity;
 
 public class FoodConsumptionActivity extends AppCompatActivity {
 
