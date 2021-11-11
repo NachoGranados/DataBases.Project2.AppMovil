@@ -1,4 +1,4 @@
-package com.example.nutritec.food.consumption;
+package com.example.nutritec.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,22 +9,18 @@ import android.widget.EditText;
 
 import com.example.nutritec.R;
 
-public class FoodConsumptionAddProductActivity extends AppCompatActivity {
+public class FoodConsumptionAddRecipeActivity extends AppCompatActivity {
 
     // Variables to control XML items
-    private EditText servingsText;
-
     private Button goBackButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food_consumption_add_product);
+        setContentView(R.layout.activity_food_consumption_add_recipe);
 
         // Variables assignment to control XML items
-        servingsText = findViewById(R.id.editTextFoodConsumptionAddProductServings);
-
-        goBackButton = (Button) findViewById(R.id.buttonFoodConsumptionAddProductGoBack);
+        goBackButton = (Button) findViewById(R.id.buttonFoodConsumptionAddRecipeGoBack);
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

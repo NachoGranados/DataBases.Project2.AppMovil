@@ -1,4 +1,4 @@
-package com.example.nutritec.recipes;
+package com.example.nutritec.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -8,10 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.nutritec.MainActivity;
 import com.example.nutritec.R;
-import com.example.nutritec.RegisterActivity;
-import com.example.nutritec.food.consumption.FoodConsumptionActivity;
 
 public class RecipesActivity extends AppCompatActivity {
 

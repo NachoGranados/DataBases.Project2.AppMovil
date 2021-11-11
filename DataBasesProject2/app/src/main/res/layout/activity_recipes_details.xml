@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1d1d1d"
-    tools:context=".recipes.RecipesDetailsActivity">
+    tools:context=".activities.RecipesDetailsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

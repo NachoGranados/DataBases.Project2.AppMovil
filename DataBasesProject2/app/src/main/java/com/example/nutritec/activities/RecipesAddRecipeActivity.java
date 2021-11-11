@@ -1,4 +1,4 @@
-package com.example.nutritec.recipes;
+package com.example.nutritec.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 

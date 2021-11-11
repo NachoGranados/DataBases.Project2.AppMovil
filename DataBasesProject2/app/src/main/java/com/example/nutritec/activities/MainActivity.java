@@ -1,4 +1,4 @@
-package com.example.nutritec;
+package com.example.nutritec.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -11,8 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.nutritec.food.consumption.FoodConsumptionActivity;
-import com.example.nutritec.recipes.RecipesActivity;
+import com.example.nutritec.R;
 
 public class MainActivity extends AppCompatActivity {
 

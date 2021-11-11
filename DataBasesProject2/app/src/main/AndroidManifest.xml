@@ -13,25 +13,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
-            android:name=".recipes.RecipesAddRecipeActivity"
+            android:name=".activities.RecipesAddRecipeActivity"
             android:exported="false" />
         <activity
-            android:name=".recipes.RecipesAddProductActivity"
+            android:name=".activities.RecipesAddProductActivity"
             android:exported="false" />
         <activity
-            android:name=".recipes.RecipesDetailsActivity"
+            android:name=".activities.RecipesDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".food.consumption.FoodConsumptionAddRecipeActivity"
+            android:name=".activities.FoodConsumptionAddRecipeActivity"
             android:exported="false" />
         <activity
-            android:name=".food.consumption.FoodConsumptionAddProductActivity"
+            android:name=".activities.FoodConsumptionAddProductActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".activities.RegisterActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,13 +40,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".recipes.RecipesActivity"
+            android:name=".activities.RecipesActivity"
             android:exported="true" />
         <activity
-            android:name=".food.consumption.FoodConsumptionActivity"
+            android:name=".activities.FoodConsumptionActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="true" />
     </application>
 
