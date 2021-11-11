@@ -46,10 +46,10 @@ public class Recipe2Adapter extends RecyclerView.Adapter<Recipe2Adapter.Recipe2V
 
         Recipe recipe = recipeList.get(position);
 
-        holder.number.setText("Number: " + recipe.getNumber());
-        holder.name.setText("Name: " + recipe.getName());
+        holder.numberTextView.setText("Number: " + recipe.getNumber());
+        holder.nameTextView.setText("Name: " + recipe.getName());
 
-        holder.addRecipe.setOnClickListener(new View.OnClickListener() {
+        holder.addRecipeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -69,19 +69,19 @@ public class Recipe2Adapter extends RecyclerView.Adapter<Recipe2Adapter.Recipe2V
 
     public class Recipe2ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView number;
-        TextView name;
+        TextView numberTextView;
+        TextView nameTextView;
 
-        Button addRecipe;
+        Button addRecipeButton;
 
         public Recipe2ViewHolder(@NonNull View itemView) {
 
             super(itemView);
 
-            number = itemView.findViewById(R.id.textViewRecipeItem2Number);
-            name = itemView.findViewById(R.id.textViewRecipeItem2Name);
+            numberTextView = itemView.findViewById(R.id.textViewRecipeItem2Number);
+            nameTextView = itemView.findViewById(R.id.textViewRecipeItem2Name);
 
-            addRecipe = itemView.findViewById(R.id.buttonRecipeItem2Details);
+            addRecipeButton = itemView.findViewById(R.id.buttonRecipeItem2Details);
 
         }
 

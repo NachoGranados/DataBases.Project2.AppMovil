@@ -42,11 +42,11 @@ public class Product2Adapter extends RecyclerView.Adapter<Product2Adapter.Produc
 
         Product product = productList.get(position);
 
-        holder.barcode.setText("Barcode: " + product.getBarcode());
-        holder.name.setText("Name: " + product.getName());
-        holder.description.setText("Description: " + product.getDescription());
+        holder.barcodeTextView.setText("Barcode: " + product.getBarcode());
+        holder.nameTextView.setText("Name: " + product.getName());
+        holder.descriptionTextView.setText("Description: " + product.getDescription());
 
-        holder.addProduct.setOnClickListener(new View.OnClickListener() {
+        holder.addProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -76,21 +76,21 @@ public class Product2Adapter extends RecyclerView.Adapter<Product2Adapter.Produc
 
     public class Product2ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView barcode;
-        TextView name;
-        TextView description;
+        TextView barcodeTextView;
+        TextView nameTextView;
+        TextView descriptionTextView;
 
-        Button addProduct;
+        Button addProductButton;
 
         public Product2ViewHolder(@NonNull View itemView) {
 
             super(itemView);
 
-            barcode = itemView.findViewById(R.id.textViewProductItem2Barcode);
-            name = itemView.findViewById(R.id.textViewProductItem2Name);
-            description = itemView.findViewById(R.id.textViewProductItem2Description);
+            barcodeTextView = itemView.findViewById(R.id.textViewProductItem2Barcode);
+            nameTextView = itemView.findViewById(R.id.textViewProductItem2Name);
+            descriptionTextView = itemView.findViewById(R.id.textViewProductItem2Description);
 
-            addProduct = itemView.findViewById(R.id.buttonProductItem2AddProduct);
+            addProductButton = itemView.findViewById(R.id.buttonProductItem2AddProduct);
 
         }
 

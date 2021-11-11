@@ -17,12 +17,30 @@ public class FoodConsumptionActivity extends AppCompatActivity {
     // Variables to control XML items
     DrawerLayout drawerLayout;
 
-    private TextView textViewFoodConsumptionFeedbackContent;
+    private Button mondayButton;
+    private Button tuesdayButton;
+    private Button wednesdayButton;
+    private Button thursdayButton;
+    private Button fridayButton;
+
+    private Button breakfastButton;
+    private Button morningSnackButton;
+    private Button lunchButton;
+    private Button afternoonSnackButton;
+    private Button dinnerButton;
+
+    TextView dayTextView;
+    TextView mealTextView;
+
+    private TextView feedbackContentTextView;
 
     private Button sendButton;
     private Button addProductButton;
     private Button addRecipeButton;
 
+    // Global variables
+    private String day;
+    private String meal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +50,141 @@ public class FoodConsumptionActivity extends AppCompatActivity {
         // Variables assignment to control XML items
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        textViewFoodConsumptionFeedbackContent = findViewById(R.id.textViewFoodConsumptionFeedbackContent);
-        textViewFoodConsumptionFeedbackContent.setMovementMethod(new ScrollingMovementMethod());
+        mondayButton = (Button) findViewById(R.id.buttonFoodConsumptionMonday);
+        mondayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                day = "Monday";
+
+                dayTextView.setText("Day: Monday");
+
+            }
+
+        });
+
+        tuesdayButton = (Button) findViewById(R.id.buttonFoodConsumptionTuesday);
+        tuesdayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                day = "Tuesday";
+
+                dayTextView.setText("Day: Tuesday");
+
+            }
+
+        });
+
+        wednesdayButton = (Button) findViewById(R.id.buttonFoodConsumptionWednesday);
+        wednesdayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                day = "Wednesday";
+
+                dayTextView.setText("Day: Wednesday");
+
+            }
+
+        });
+
+        thursdayButton = (Button) findViewById(R.id.buttonFoodConsumptionThursday);
+        thursdayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                day = "Thursday";
+
+                dayTextView.setText("Day: Thursday");
+
+            }
+
+        });
+
+        fridayButton = (Button) findViewById(R.id.buttonFoodConsumptionFriday);
+        fridayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                day = "Friday";
+
+                dayTextView.setText("Day: Friday");
+
+            }
+
+        });
+
+        breakfastButton = (Button) findViewById(R.id.buttonFoodConsumptionBreakfast);
+        breakfastButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                meal = "Breakfast";
+
+                mealTextView.setText("Meal: Breakfast");
+
+            }
+
+        });
+
+        morningSnackButton = (Button) findViewById(R.id.buttonFoodConsumptionMorningSnack);
+        morningSnackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                meal = "Morning snack";
+
+                mealTextView.setText("Meal: Morning snack");
+
+            }
+
+        });
+
+        lunchButton = (Button) findViewById(R.id.buttonFoodConsumptionLunch);
+        lunchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                meal = "Lunch";
+
+                mealTextView.setText("Meal: Lunch");
+
+            }
+
+        });
+
+        afternoonSnackButton = (Button) findViewById(R.id.buttonFoodConsumptionAfternoonSnack);
+        afternoonSnackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                meal = "Afternoon snack";
+
+                mealTextView.setText("Meal: Afternoon snack");
+
+            }
+
+        });
+
+        dinnerButton = (Button) findViewById(R.id.buttonFoodConsumptionDinner);
+        dinnerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                meal = "Diner";
+
+                mealTextView.setText("Meal: Dinner");
+
+            }
+
+        });
+
+        dayTextView = findViewById(R.id.textViewFoodConsumptionDay);
+        mealTextView = findViewById(R.id.textViewFoodConsumptionMeal);
+
+        feedbackContentTextView = findViewById(R.id.textViewFoodConsumptionFeedbackContent);
+        feedbackContentTextView.setMovementMethod(new ScrollingMovementMethod());
 
         sendButton = (Button) findViewById(R.id.buttonFoodConsumptionSend);
         sendButton.setOnClickListener(new View.OnClickListener() {

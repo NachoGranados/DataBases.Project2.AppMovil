@@ -7,8 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.nutritec.R;
+import com.example.nutritec.interfaces.PatientRestAPI;
+import com.example.nutritec.models.Patient;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -32,6 +40,9 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // GET PATIENT REST API METHOD
+                PA1(emailText.getText().toString());
 
                 openMainActivity();
 
@@ -68,16 +79,59 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    // Gets the patient information from the REST API
+    private void PA1(String credential) {
 
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000")
+                .addConverterFactory(GsonConverterFactory.create()).build();
 
+        PatientRestAPI patientRestAPI = retrofit.create(PatientRestAPI.class);
 
+        Call<Patient> getCall = patientRestAPI.PA1(credential);
+        getCall.enqueue(new Callback<Patient>() {
+            @Override
+            public void onResponse(Call<Patient> call, retrofit2.Response<Patient> response) {
 
+                try {
 
+                    if (response.isSuccessful()) {
 
+                        Patient patient = response.body();
 
+                        if (passwordText.getText().toString().equals(patient.getPassword())) {
 
+                            Toast.makeText(LoginActivity.this, "Successful Login", Toast.LENGTH_SHORT).show();
 
+                            // openMainActivity(patient);
 
+                        } else {
 
+                            Toast.makeText(LoginActivity.this, "Wrong Username or Password. Try Again", Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    } else {
+
+                        Toast.makeText(LoginActivity.this, "Wrong Username or Password. Try Again", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                } catch (Exception exception) {
+
+                    Toast.makeText(LoginActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Patient> call, Throwable t) {
+
+                Toast.makeText(LoginActivity.this, "Connection Failed", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+    }
 
 }

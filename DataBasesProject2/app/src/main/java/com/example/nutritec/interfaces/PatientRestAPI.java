@@ -20,7 +20,7 @@ public interface PatientRestAPI {
       Url: /api/Patient/login/{credential} where credential is the email or username
     */
     @GET("/api/Patient/login/{credential}")
-    public Call<List<Patient>> PA1(@Path("credential") String credential);
+    public Call<Patient> PA1(@Path("credential") String credential);
 
     /*
       PA.2

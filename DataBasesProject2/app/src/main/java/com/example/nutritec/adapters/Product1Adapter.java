@@ -41,8 +41,8 @@ public class Product1Adapter extends RecyclerView.Adapter<Product1Adapter.Produc
 
         Product product = productList.get(position);
 
-        holder.barcode.setText("Barcode: " + product.getBarcode());
-        holder.name.setText("Name: " + product.getName());
+        holder.barcodeTextView.setText("Barcode: " + product.getBarcode());
+        holder.nameTextView.setText("Name: " + product.getName());
 
     }
 
@@ -55,15 +55,15 @@ public class Product1Adapter extends RecyclerView.Adapter<Product1Adapter.Produc
 
     public class Product1ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView barcode;
-        TextView name;
+        TextView barcodeTextView;
+        TextView nameTextView;
 
         public Product1ViewHolder(@NonNull View itemView) {
 
             super(itemView);
 
-            barcode = itemView.findViewById(R.id.textViewProductItem1Barcode);
-            name = itemView.findViewById(R.id.textViewProductItem1Name);
+            barcodeTextView = itemView.findViewById(R.id.textViewProductItem1Barcode);
+            nameTextView = itemView.findViewById(R.id.textViewProductItem1Name);
 
         }
 
