@@ -35,12 +35,18 @@ public class RecipesActivity extends AppCompatActivity {
 
     public void ClickHome(View view) {
 
+        // Finish activity
+        this.finish();
+
         // Redirect activity to home
         MainActivity.redirectActivity(this, MainActivity.class);
 
     }
 
     public void ClickFoodConsumption(View view) {
+
+        // Finish activity
+        this.finish();
 
         // Redirect activity to food consumption
         MainActivity.redirectActivity(this, FoodConsumptionActivity.class);

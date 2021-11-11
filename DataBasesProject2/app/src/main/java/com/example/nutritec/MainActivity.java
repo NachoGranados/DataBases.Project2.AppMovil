@@ -68,12 +68,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void ClickFoodConsumption(View view) {
 
+        // Finish activity
+        this.finish();
+
         // Redirect to food consumption
         redirectActivity(this, FoodConsumptionActivity.class);
 
     }
 
     public void ClickRecipes(View view) {
+
+        // Finish activity
+        this.finish();
 
         // Redirect to recipes
         redirectActivity(this, RecipesActivity.class);
@@ -101,10 +107,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
 
                 // Finish activity
-                activity.finishAffinity();
+                activity.finish();
 
                 // Exit app
-                System.exit(0);
+                //System.exit(0);
 
             }
         });

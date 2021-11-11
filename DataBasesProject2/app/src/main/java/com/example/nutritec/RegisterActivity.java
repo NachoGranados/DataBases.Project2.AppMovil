@@ -68,8 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
     // Opens the activity where the user can verify his or her account
     private void openLoginActivity() {
 
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        this.finish();
 
     }
 
