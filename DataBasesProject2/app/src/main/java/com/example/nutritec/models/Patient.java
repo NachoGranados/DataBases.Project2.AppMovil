@@ -9,6 +9,7 @@ public class Patient {
     private String lastName2;
     private String birthDate;
     private String passowrd;
+    private String nutritionistEmail;
 
     public String getEmail() {
         return email;
@@ -64,6 +65,14 @@ public class Patient {
 
     public void setPassowrd(String passowrd) {
         this.passowrd = passowrd;
+    }
+
+    public String getNutritionistEmail() {
+        return nutritionistEmail;
+    }
+
+    public void setNutritionistEmail(String nutritionistEmail) {
+        this.nutritionistEmail = nutritionistEmail;
     }
 
 }

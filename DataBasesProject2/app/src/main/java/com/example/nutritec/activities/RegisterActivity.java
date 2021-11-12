@@ -10,7 +10,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.nutritec.R;
+import com.example.nutritec.interfaces.MeasurementRestAPI;
 import com.example.nutritec.interfaces.PatientRestAPI;
+import com.example.nutritec.models.Measurement;
 import com.example.nutritec.models.Patient;
 
 import retrofit2.Call;
@@ -76,9 +78,20 @@ public class RegisterActivity extends AppCompatActivity {
                 String birthDate = birthDateText.getText().toString();
                 String password = passwordText.getText().toString();
 
-                if(!email.isEmpty() && !username.isEmpty() && !firstName.isEmpty() &&
-                   !lastName1.isEmpty() && !lastName2.isEmpty() && !birthDate.isEmpty() &&
-                   !password.isEmpty()) {
+                String date = dateText.getText().toString();
+                String height = heightText.getText().toString();
+                String weight = weightText.getText().toString();
+                String hips = hipsText.getText().toString();
+                String waist = waistText.getText().toString();
+                String neck = neckText.getText().toString();
+                String fatPercentage = fatPercentageText.getText().toString();
+                String musclePercentage = musclePercentageText.getText().toString();
+
+                if(!email.equals("") && !username.equals("") && !firstName.equals("") &&
+                   !lastName1.equals("") && !lastName2.equals("") && !birthDate.equals("") &&
+                   !password.equals("") && !date.equals("") && !height.equals("") &&
+                   !weight.equals("") && !hips.equals("") && !waist.equals("") &&
+                   !neck.equals("") && !fatPercentage.equals("") && !musclePercentage.equals("")) {
 
                     Patient patient = new Patient();
 
@@ -92,6 +105,20 @@ public class RegisterActivity extends AppCompatActivity {
 
                     PA2(patient);
 
+                    Measurement measurement = new Measurement();
+
+                    measurement.setDate(date);
+                    measurement.setPatientEmail(email);
+                    measurement.setHeight(Integer.parseInt(height));
+                    measurement.setWeight(Integer.parseInt(weight));
+                    measurement.setHips(Integer.parseInt(hips));
+                    measurement.setWaist(Integer.parseInt(waist));
+                    measurement.setNeck(Integer.parseInt(neck));
+                    measurement.setFatPercentage(Integer.parseInt(fatPercentage));
+                    measurement.setMusclePercentage(Integer.parseInt(musclePercentage));
+
+                    ME3(measurement);
+
                 } else {
 
                     Toast.makeText(RegisterActivity.this, "Complete all the information", Toast.LENGTH_SHORT).show();
@@ -104,6 +131,13 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    // Opens the activity where the user can verify his or her account
+    private void openLoginActivity() {
+
+        this.finish();
+
+    }
+
     // Posts the given patient information into the REST API
     private void PA2(Patient patient) {
 
@@ -112,16 +146,59 @@ public class RegisterActivity extends AppCompatActivity {
 
         PatientRestAPI patientRestAPI = retrofit.create(PatientRestAPI.class);
 
-        Call<Patient> postCall = patientRestAPI.PA2(patient);
-        postCall.enqueue(new Callback<Patient>() {
+        Call<Void> postCall = patientRestAPI.PA2(patient);
+        postCall.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Patient> call, retrofit2.Response<Patient> response) {
+            public void onResponse(Call<Void> call, retrofit2.Response<Void> response) {
 
                 try {
 
                     if (response.isSuccessful()) {
 
-                        Toast.makeText(RegisterActivity.this, "Successful Register", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "Successful Register Patient", Toast.LENGTH_SHORT).show();
+
+                    } else {
+
+                        Toast.makeText(RegisterActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+
+                    }
+
+                } catch (Exception exception) {
+
+                    Toast.makeText(RegisterActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+                Toast.makeText(RegisterActivity.this, "Connection Failed", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+    }
+
+    // Posts the given measurement information into the REST API
+    private void ME3(Measurement measurement) {
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://nutritecrg.azurewebsites.net")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+
+        MeasurementRestAPI measurementRestAPI = retrofit.create(MeasurementRestAPI.class);
+
+        Call<Void> postCall = measurementRestAPI.ME3(measurement);
+        postCall.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, retrofit2.Response<Void> response) {
+
+                try {
+
+                    if (response.isSuccessful()) {
+
+                        Toast.makeText(RegisterActivity.this, "Successful Register Measurement", Toast.LENGTH_SHORT).show();
 
                         openLoginActivity();
 
@@ -140,7 +217,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Patient> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
 
                 Toast.makeText(RegisterActivity.this, "Connection Failed", Toast.LENGTH_SHORT).show();
 
@@ -149,11 +226,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    // Opens the activity where the user can verify his or her account
-    private void openLoginActivity() {
 
-        this.finish();
-
-    }
 
 }

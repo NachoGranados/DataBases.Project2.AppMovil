@@ -25,6 +25,6 @@ public interface PatientRestAPI {
       Url: /api/Patient
     */
     @POST("/api/Patient")
-    public Call<Patient> PA2(@Body Patient patient);
+    public Call<Void> PA2(@Body Patient patient);
 
 }
