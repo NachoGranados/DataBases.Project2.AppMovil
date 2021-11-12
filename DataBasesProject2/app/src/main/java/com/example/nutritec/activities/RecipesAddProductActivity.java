@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,7 +14,7 @@ import android.widget.Toast;
 import com.example.nutritec.R;
 import com.example.nutritec.adapters.Product4Adapter;
 import com.example.nutritec.interfaces.RecipeRestAPI;
-import com.example.nutritec.models.Product;
+import com.example.nutritec.models.Product2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +35,7 @@ public class RecipesAddProductActivity extends AppCompatActivity {
     private Button goBackButton;
 
     // Global variables
-    private List<Product> productList;
+    private List<Product2> product2List;
 
     private static int servings = 1;
 
@@ -82,24 +81,24 @@ public class RecipesAddProductActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        productList = new ArrayList<>();
+        product2List = new ArrayList<>();
 
         // QUITAR
         for(int i = 0; i < 5; i++) {
 
-            Product product = new Product();
+            Product2 product2 = new Product2();
 
-            product.setBarcode(i);
-            product.setName("Rice");
-            product.setDescription("A serving of rice");
+            product2.setBarcode(i);
+            product2.setName("Rice");
+            product2.setDescription("A serving of rice");
 
-            productList.add(product);
+            product2List.add(product2);
 
         }
 
         RE5(RecipesDetailsActivity.getNumber());
 
-        Product4Adapter product4Adapter = new Product4Adapter(RecipesAddProductActivity.this, productList);
+        Product4Adapter product4Adapter = new Product4Adapter(RecipesAddProductActivity.this, product2List);
 
         recyclerView.setAdapter(product4Adapter);
 
@@ -116,12 +115,12 @@ public class RecipesAddProductActivity extends AppCompatActivity {
 
     }
 
-    public List<Product> getProductList() {
-        return productList;
+    public List<Product2> getProductList() {
+        return product2List;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setProductList(List<Product2> product2List) {
+        this.product2List = product2List;
     }
 
     public static int getServings() {
@@ -146,18 +145,18 @@ public class RecipesAddProductActivity extends AppCompatActivity {
 
         RecipeRestAPI recipeRestAPI = retrofit.create(RecipeRestAPI.class);
 
-        Call<List<Product>> getCall = recipeRestAPI.RE5(number);
-        getCall.enqueue(new Callback<List<Product>>() {
+        Call<List<Product2>> getCall = recipeRestAPI.RE5(number);
+        getCall.enqueue(new Callback<List<Product2>>() {
             @Override
-            public void onResponse(Call<List<Product>> call, retrofit2.Response<List<Product>> response) {
+            public void onResponse(Call<List<Product2>> call, retrofit2.Response<List<Product2>> response) {
 
                 try {
 
                     if (response.isSuccessful()) {
 
-                        List<Product> productListResponse = response.body();
+                        List<Product2> product2ListResponse = response.body();
 
-                        setProductList(productListResponse);
+                        setProductList(product2ListResponse);
 
                     } else {
 
@@ -174,7 +173,7 @@ public class RecipesAddProductActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Product>> call, Throwable t) {
+            public void onFailure(Call<List<Product2>> call, Throwable t) {
 
                 Toast.makeText(RecipesAddProductActivity.this, "Connection Failed", Toast.LENGTH_SHORT).show();
 

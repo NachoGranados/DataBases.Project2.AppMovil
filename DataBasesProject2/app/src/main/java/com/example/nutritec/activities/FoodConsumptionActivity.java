@@ -50,6 +50,8 @@ public class FoodConsumptionActivity extends AppCompatActivity {
     TextView dayTextView;
     TextView mealTextView;
 
+    private Button searchButton;
+
     private TextView feedbackContentTextView;
     private EditText commentEditText;
 
@@ -58,23 +60,10 @@ public class FoodConsumptionActivity extends AppCompatActivity {
     private Button addRecipeButton;
 
     // Global variables
-    private static String day = "Monday";
-    private static String meal = "Breakfast";
-
-    private List<Product1> product1List;
-    private List<Comment> commentList;
+    private static String day;
+    private static String meal;
 
     private RecyclerView recyclerView;
-
-
-
-
-
-
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +73,9 @@ public class FoodConsumptionActivity extends AppCompatActivity {
         // Variables assignment to control XML items
         drawerLayout = findViewById(R.id.drawer_layout);
 
+        day = "Monday";
+        meal = "Breakfast";
+
         mondayButton = (Button) findViewById(R.id.buttonFoodConsumptionMonday);
         mondayButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +83,7 @@ public class FoodConsumptionActivity extends AppCompatActivity {
 
                 day = "Monday";
 
-                dayTextView.setText("Day: Monday");
+                dayTextView.setText("Day: " + day);
 
             }
 
@@ -104,7 +96,7 @@ public class FoodConsumptionActivity extends AppCompatActivity {
 
                 day = "Tuesday";
 
-                dayTextView.setText("Day: Tuesday");
+                dayTextView.setText("Day: " + day);
 
             }
 
@@ -117,7 +109,7 @@ public class FoodConsumptionActivity extends AppCompatActivity {
 
                 day = "Wednesday";
 
-                dayTextView.setText("Day: Wednesday");
+                dayTextView.setText("Day: " + day);
 
             }
 
@@ -130,7 +122,7 @@ public class FoodConsumptionActivity extends AppCompatActivity {
 
                 day = "Thursday";
 
-                dayTextView.setText("Day: Thursday");
+                dayTextView.setText("Day: " + day);
 
             }
 
@@ -143,7 +135,7 @@ public class FoodConsumptionActivity extends AppCompatActivity {
 
                 day = "Friday";
 
-                dayTextView.setText("Day: Friday");
+                dayTextView.setText("Day: " + day);
 
             }
 
@@ -156,7 +148,7 @@ public class FoodConsumptionActivity extends AppCompatActivity {
 
                 meal = "Breakfast";
 
-                mealTextView.setText("Meal: Breakfast");
+                mealTextView.setText("Meal: " + meal);
 
             }
 
@@ -169,7 +161,7 @@ public class FoodConsumptionActivity extends AppCompatActivity {
 
                 meal = "Morning snack";
 
-                mealTextView.setText("Meal: Morning snack");
+                mealTextView.setText("Meal: " + meal);
 
             }
 
@@ -182,7 +174,7 @@ public class FoodConsumptionActivity extends AppCompatActivity {
 
                 meal = "Lunch";
 
-                mealTextView.setText("Meal: Lunch");
+                mealTextView.setText("Meal: " + meal);
 
             }
 
@@ -195,7 +187,7 @@ public class FoodConsumptionActivity extends AppCompatActivity {
 
                 meal = "Afternoon snack";
 
-                mealTextView.setText("Meal: Afternoon snack");
+                mealTextView.setText("Meal: " + meal);
 
             }
 
@@ -208,7 +200,7 @@ public class FoodConsumptionActivity extends AppCompatActivity {
 
                 meal = "Diner";
 
-                mealTextView.setText("Meal: Dinner");
+                mealTextView.setText("Meal: " + meal);
 
             }
 
@@ -217,97 +209,29 @@ public class FoodConsumptionActivity extends AppCompatActivity {
         dayTextView = findViewById(R.id.textViewFoodConsumptionDay);
         mealTextView = findViewById(R.id.textViewFoodConsumptionMeal);
 
+        searchButton = (Button) findViewById(R.id.buttonFoodConsumptionSearch);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                PR8(MainActivity.getPatient().getEmail(), day, meal);
+
+            }
+
+        });
+
         recyclerView = findViewById(R.id.recyclerViewFoodConsumption);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //product1List = new ArrayList<Product1>();
-
-        /*
-        // QUITAR
-        for(int i = 0; i < 5; i++) {
-
-            Product product = new Product();
-
-            product.setBarcode(i);
-            product.setName("Rice");
-
-            productList.add(product);
-
-        }
-
-         */
-
         PR8(MainActivity.getPatient().getEmail(), day, meal);
-
-        //Toast.makeText(FoodConsumptionActivity.this, Integer.toString(product1ListAux.size()), Toast.LENGTH_SHORT).show();
-
-
-
-
-
-
-        //Toast.makeText(FoodConsumptionActivity.this, MainActivity.getPatient().getEmail() + "*" + day + "*" + meal, Toast.LENGTH_SHORT).show();
-
-        //Toast.makeText(FoodConsumptionActivity.this, Integer.toString(product1List.size()), Toast.LENGTH_SHORT).show();
-
-        //Product1Adapter product1Adapter = new Product1Adapter(FoodConsumptionActivity.this, product1List);
-
-        //recyclerView.setAdapter(product1Adapter);
 
         feedbackContentTextView = findViewById(R.id.textViewFoodConsumptionFeedbackContent);
         feedbackContentTextView.setMovementMethod(new ScrollingMovementMethod());
 
         feedbackContentTextView.setText("");
 
-        commentList = new ArrayList<>();
-
-        CO2(MainActivity.getPatient().getEmail(), day, meal);
-
-
-
-
-
-
-        // QUITAR
-
-        //feedbackContentTextView.setText("");
-
-        /*
-
-        for(int i = 0; i < 5; i++) {
-
-            Comment comment = new Comment();
-
-            comment.setCommentText("Hola -> " + Integer.toString(i));
-
-            commentList.add(comment);
-
-        }
-
-
-
-        String commentText = "";
-
-        for(int i = 0; i < commentList.size(); i++) {
-
-            commentText += commentList.get(i).getCommentText() + "\n";
-
-        }
-
-
-
-        feedbackContentTextView.setText(commentText);
-
-
-
-
-
-         */
-
-
-
-
+        //CO2(MainActivity.getPatient().getEmail(), day, meal);
 
         commentEditText = findViewById(R.id.editTextFoodConsumptionComment);
 
@@ -441,29 +365,11 @@ public class FoodConsumptionActivity extends AppCompatActivity {
         FoodConsumptionActivity.meal = meal;
     }
 
-    public List<Product1> getProduct1List() {
-        return product1List;
-    }
-
-    public void setProduct1List(List<Product1> product1List) {
-        this.product1List = product1List;
-    }
-
-    public List<Comment> getCommentList() {
-        return commentList;
-    }
-
-    public void setCommentList(List<Comment> commentList) {
-        this.commentList = commentList;
-    }
-
     // Gets products information from Rest API
     private void PR8(String email, String day, String meal) {
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl("https://nutritecrg.azurewebsites.net")
                 .addConverterFactory(GsonConverterFactory.create()).build();
-
-        final List<Product1>[] product1ListAux = new List[]{new ArrayList<>()};
 
         ProductRestAPI productRestAPI = retrofit.create(ProductRestAPI.class);
 
@@ -477,6 +383,8 @@ public class FoodConsumptionActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
 
                         List<Product1> product1ListResponse = response.body();
+
+                        Toast.makeText(FoodConsumptionActivity.this, Integer.toString(product1ListResponse.size()), Toast.LENGTH_SHORT).show();
 
                         Product1Adapter product1Adapter = new Product1Adapter(FoodConsumptionActivity.this, product1ListResponse);
 

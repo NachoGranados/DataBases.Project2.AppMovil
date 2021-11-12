@@ -12,15 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nutritec.R;
-import com.example.nutritec.activities.FoodConsumptionActivity;
-import com.example.nutritec.activities.FoodConsumptionAddProductActivity;
-import com.example.nutritec.activities.MainActivity;
 import com.example.nutritec.activities.RecipesAddProductActivity;
 import com.example.nutritec.activities.RecipesDetailsActivity;
-import com.example.nutritec.interfaces.ProductRestAPI;
 import com.example.nutritec.interfaces.RecipeRestAPI;
-import com.example.nutritec.models.Product;
-import com.example.nutritec.models.Recipe;
+import com.example.nutritec.models.Product2;
 
 import java.util.List;
 
@@ -28,18 +23,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
 
 public class Product4Adapter extends RecyclerView.Adapter<Product4Adapter.Product4ViewHolder> {
 
     Context context;
-    List<Product> productList;
+    List<Product2> product2List;
 
-    public Product4Adapter(Context context, List<Product> productList) {
+    public Product4Adapter(Context context, List<Product2> product2List) {
 
         this.context = context;
-        this.productList = productList;
+        this.product2List = product2List;
 
     }
 
@@ -56,11 +49,11 @@ public class Product4Adapter extends RecyclerView.Adapter<Product4Adapter.Produc
     @Override
     public void onBindViewHolder(@NonNull Product4ViewHolder holder, int position) {
 
-        Product product = productList.get(position);
+        Product2 product2 = product2List.get(position);
 
-        holder.barcodeTextView.setText("Barcode: " + product.getBarcode());
-        holder.nameTextView.setText("Name: " + product.getName());
-        holder.descriptionTextView.setText("Description: " + product.getDescription());
+        holder.barcodeTextView.setText("Barcode: " + product2.getBarcode());
+        holder.nameTextView.setText("Name: " + product2.getName());
+        holder.descriptionTextView.setText("Description: " + product2.getDescription());
 
         holder.addProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +61,7 @@ public class Product4Adapter extends RecyclerView.Adapter<Product4Adapter.Produc
 
                 Toast.makeText(context, "Product Addition Successful", Toast.LENGTH_SHORT).show();
 
-                RE6(RecipesDetailsActivity.getNumber(), product.getBarcode(), RecipesAddProductActivity.getServings());
+                RE6(RecipesDetailsActivity.getNumber(), product2.getBarcode(), RecipesAddProductActivity.getServings());
 
             }
         });
@@ -78,7 +71,7 @@ public class Product4Adapter extends RecyclerView.Adapter<Product4Adapter.Produc
     @Override
     public int getItemCount() {
 
-        return productList.size();
+        return product2List.size();
 
     }
 
@@ -112,10 +105,10 @@ public class Product4Adapter extends RecyclerView.Adapter<Product4Adapter.Produc
 
         RecipeRestAPI recipeRestAPI = retrofit.create(RecipeRestAPI.class);
 
-        Call<Product> postCall = recipeRestAPI.RE6(number, barcode, servings);
-        postCall.enqueue(new Callback<Product>() {
+        Call<Product2> postCall = recipeRestAPI.RE6(number, barcode, servings);
+        postCall.enqueue(new Callback<Product2>() {
             @Override
-            public void onResponse(Call<Product> call, retrofit2.Response<Product> response) {
+            public void onResponse(Call<Product2> call, retrofit2.Response<Product2> response) {
 
                 try {
 
@@ -138,7 +131,7 @@ public class Product4Adapter extends RecyclerView.Adapter<Product4Adapter.Produc
             }
 
             @Override
-            public void onFailure(Call<Product> call, Throwable t) {
+            public void onFailure(Call<Product2> call, Throwable t) {
 
                 Toast.makeText(context, "Connection Failed", Toast.LENGTH_SHORT).show();
 

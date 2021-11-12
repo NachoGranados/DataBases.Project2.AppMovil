@@ -1,6 +1,6 @@
 package com.example.nutritec.interfaces;
 
-import com.example.nutritec.models.Product;
+import com.example.nutritec.models.Product2;
 import com.example.nutritec.models.Recipe;
 
 import java.util.List;
@@ -51,7 +51,7 @@ public interface RecipeRestAPI {
            where number is the number of the recipe
     */
     @GET("/api/Recipe/getproductsin/{number}")
-    public Call<List<Product>> RE4(@Path("number") int number);
+    public Call<List<Product2>> RE4(@Path("number") int number);
 
     /*
       RE.5
@@ -60,7 +60,7 @@ public interface RecipeRestAPI {
            where number is the number of the recipe
     */
     @GET("/api/Recipe/getproductsnotin/{number}")
-    public Call<List<Product>> RE5(@Path("number") int number);
+    public Call<List<Product2>> RE5(@Path("number") int number);
 
     /*
       RE.6
@@ -70,9 +70,9 @@ public interface RecipeRestAPI {
            of the product and servings is the amount of times the product is in the recipe
     */
     @POST("/api/Recipe/newproductinrecipe/{number}/{barcode}/{servings}")
-    public Call<Product> RE6(@Path("number") int number,
-                             @Path("barcode") int barcode,
-                             @Path("servings") int servings);
+    public Call<Product2> RE6(@Path("number") int number,
+                              @Path("barcode") int barcode,
+                              @Path("servings") int servings);
 
     /*
       RE.7

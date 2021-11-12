@@ -1,9 +1,8 @@
 package com.example.nutritec.interfaces;
 
-import com.example.nutritec.models.Product;
+import com.example.nutritec.models.Product2;
 import com.example.nutritec.models.Product1;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -20,8 +19,8 @@ public interface ProductRestAPI {
     */
     @GET("/api/Product/consumption/{patientEmail}/{day}/{meal}")
     public Call<List<Product1>> PR8(@Path("patientEmail") String patientEmail,
-                                         @Path("day") String day,
-                                         @Path("meal") String meal);
+                                    @Path("day") String day,
+                                    @Path("meal") String meal);
 
     /*
       PR.9
@@ -32,11 +31,11 @@ public interface ProductRestAPI {
            and servings is the amount of product consumed.
     */
     @GET("/api/Product/consumption/addproduct/{barcode}/{patientEmail}/{day}/{meal}/{servings}")
-    public Call<Product> PR9(@Path("barcode") int barcode,
-                             @Path("patientEmail") String patientEmail,
-                             @Path("day") String day,
-                             @Path("meal") String meal,
-                             @Path("servings") int servings);
+    public Call<Product2> PR9(@Path("barcode") int barcode,
+                              @Path("patientEmail") String patientEmail,
+                              @Path("day") String day,
+                              @Path("meal") String meal,
+                              @Path("servings") int servings);
 
     /*
       PR.10
@@ -44,8 +43,8 @@ public interface ProductRestAPI {
       Url: /api/Product/noconsumption/{patientEmail}/{day}/{meal} where patientEmail is the email of the patient that consumed the product, day and meal correspond to the time of consumption
     */
     @GET("/api/Product/noconsumption/{patientEmail}/{day}/{meal}")
-    public Call<List<Product>> PR10(@Path("patientEmail") String patientEmail,
-                                    @Path("day") String day,
-                                    @Path("meal") String meal);
+    public Call<List<Product2>> PR10(@Path("patientEmail") String patientEmail,
+                                     @Path("day") String day,
+                                     @Path("meal") String meal);
 
 }

@@ -1,10 +1,6 @@
 package com.example.nutritec.interfaces;
 
-import com.example.nutritec.models.Comment;
 import com.example.nutritec.models.Patient;
-import com.example.nutritec.models.Product;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

@@ -15,10 +15,8 @@ import com.example.nutritec.R;
 import com.example.nutritec.activities.FoodConsumptionActivity;
 import com.example.nutritec.activities.FoodConsumptionAddProductActivity;
 import com.example.nutritec.activities.MainActivity;
-import com.example.nutritec.interfaces.CommentRestAPI;
 import com.example.nutritec.interfaces.ProductRestAPI;
-import com.example.nutritec.models.Comment;
-import com.example.nutritec.models.Product;
+import com.example.nutritec.models.Product2;
 
 import java.util.List;
 
@@ -26,17 +24,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Path;
 
 public class Product2Adapter extends RecyclerView.Adapter<Product2Adapter.Product2ViewHolder> {
 
     Context context;
-    List<Product> productList;
+    List<Product2> product2List;
 
-    public Product2Adapter(Context context, List<Product> productList) {
+    public Product2Adapter(Context context, List<Product2> product2List) {
 
         this.context = context;
-        this.productList = productList;
+        this.product2List = product2List;
 
     }
 
@@ -53,11 +50,11 @@ public class Product2Adapter extends RecyclerView.Adapter<Product2Adapter.Produc
     @Override
     public void onBindViewHolder(@NonNull Product2ViewHolder holder, int position) {
 
-        Product product = productList.get(position);
+        Product2 product2 = product2List.get(position);
 
-        holder.barcodeTextView.setText("Barcode: " + product.getBarcode());
-        holder.nameTextView.setText("Name: " + product.getName());
-        holder.descriptionTextView.setText("Description: " + product.getDescription());
+        holder.barcodeTextView.setText("Barcode: " + product2.getBarcode());
+        holder.nameTextView.setText("Name: " + product2.getName());
+        holder.descriptionTextView.setText("Description: " + product2.getDescription());
 
         holder.addProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +62,7 @@ public class Product2Adapter extends RecyclerView.Adapter<Product2Adapter.Produc
 
                 Toast.makeText(context, "Product Addition Successful", Toast.LENGTH_SHORT).show();
 
-                PR9(product.getBarcode(),
+                PR9(product2.getBarcode(),
                     MainActivity.getPatient().getEmail(),
                     FoodConsumptionActivity.getDay(),
                     FoodConsumptionActivity.getMeal(),
@@ -79,7 +76,7 @@ public class Product2Adapter extends RecyclerView.Adapter<Product2Adapter.Produc
     @Override
     public int getItemCount() {
 
-        return productList.size();
+        return product2List.size();
 
     }
 
@@ -113,10 +110,10 @@ public class Product2Adapter extends RecyclerView.Adapter<Product2Adapter.Produc
 
         ProductRestAPI productRestAPI = retrofit.create(ProductRestAPI.class);
 
-        Call<Product> postCall = productRestAPI.PR9(barcode, email, day, meal, servings);
-        postCall.enqueue(new Callback<Product>() {
+        Call<Product2> postCall = productRestAPI.PR9(barcode, email, day, meal, servings);
+        postCall.enqueue(new Callback<Product2>() {
             @Override
-            public void onResponse(Call<Product> call, retrofit2.Response<Product> response) {
+            public void onResponse(Call<Product2> call, retrofit2.Response<Product2> response) {
 
                 try {
 
@@ -139,7 +136,7 @@ public class Product2Adapter extends RecyclerView.Adapter<Product2Adapter.Produc
             }
 
             @Override
-            public void onFailure(Call<Product> call, Throwable t) {
+            public void onFailure(Call<Product2> call, Throwable t) {
 
                 Toast.makeText(context, "Connection Failed", Toast.LENGTH_SHORT).show();
 

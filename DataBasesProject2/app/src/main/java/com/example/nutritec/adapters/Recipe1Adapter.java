@@ -13,11 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nutritec.R;
 import com.example.nutritec.activities.FoodConsumptionActivity;
-import com.example.nutritec.activities.FoodConsumptionAddRecipeActivity;
 import com.example.nutritec.activities.MainActivity;
-import com.example.nutritec.interfaces.ProductRestAPI;
 import com.example.nutritec.interfaces.RecipeRestAPI;
-import com.example.nutritec.models.Product;
 import com.example.nutritec.models.Recipe;
 
 import java.util.List;
@@ -26,7 +23,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Path;
 
 public class Recipe1Adapter extends RecyclerView.Adapter<Recipe1Adapter.Recipe1ViewHolder> {
 

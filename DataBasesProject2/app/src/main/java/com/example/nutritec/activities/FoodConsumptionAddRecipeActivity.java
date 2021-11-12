@@ -10,11 +10,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.nutritec.R;
-import com.example.nutritec.adapters.Product2Adapter;
 import com.example.nutritec.adapters.Recipe1Adapter;
-import com.example.nutritec.interfaces.ProductRestAPI;
 import com.example.nutritec.interfaces.RecipeRestAPI;
-import com.example.nutritec.models.Product;
 import com.example.nutritec.models.Recipe;
 
 import java.util.ArrayList;
@@ -24,7 +21,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Path;
 
 public class FoodConsumptionAddRecipeActivity extends AppCompatActivity {
 

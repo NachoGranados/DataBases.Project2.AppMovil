@@ -12,12 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nutritec.R;
-import com.example.nutritec.adapters.Product2Adapter;
 import com.example.nutritec.adapters.Product3Adapter;
-import com.example.nutritec.interfaces.ProductRestAPI;
 import com.example.nutritec.interfaces.RecipeRestAPI;
-import com.example.nutritec.models.Product;
-import com.example.nutritec.models.Recipe;
+import com.example.nutritec.models.Product2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +23,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
 
 public class RecipesDetailsActivity extends AppCompatActivity {
 
@@ -37,7 +32,7 @@ public class RecipesDetailsActivity extends AppCompatActivity {
     private Button goBackButton;
     private Button addProductButton;
 
-    private List<Product> productList;
+    private List<Product2> product2List;
 
     private RecyclerView recyclerView;
 
@@ -58,24 +53,24 @@ public class RecipesDetailsActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        productList = new ArrayList<>();
+        product2List = new ArrayList<>();
 
         // QUITAR
         for(int i = 0; i < 5; i++) {
 
-            Product product = new Product();
+            Product2 product2 = new Product2();
 
-            product.setBarcode(i);
-            product.setName("Rice");
-            product.setDescription("A serving of rice");
+            product2.setBarcode(i);
+            product2.setName("Rice");
+            product2.setDescription("A serving of rice");
 
-            productList.add(product);
+            product2List.add(product2);
 
         }
 
         RE4(number);
 
-        Product3Adapter product3Adapter = new Product3Adapter(RecipesDetailsActivity.this, productList);
+        Product3Adapter product3Adapter = new Product3Adapter(RecipesDetailsActivity.this, product2List);
 
         recyclerView.setAdapter(product3Adapter);
 
@@ -119,12 +114,12 @@ public class RecipesDetailsActivity extends AppCompatActivity {
         RecipesDetailsActivity.number = number;
     }
 
-    public List<Product> getProductList() {
-        return productList;
+    public List<Product2> getProductList() {
+        return product2List;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setProductList(List<Product2> product2List) {
+        this.product2List = product2List;
     }
 
     private void goBackToRecipesActivity() {
@@ -149,18 +144,18 @@ public class RecipesDetailsActivity extends AppCompatActivity {
 
         RecipeRestAPI recipeRestAPI = retrofit.create(RecipeRestAPI.class);
 
-        Call<List<Product>> getCall = recipeRestAPI.RE4(number);
-        getCall.enqueue(new Callback<List<Product>>() {
+        Call<List<Product2>> getCall = recipeRestAPI.RE4(number);
+        getCall.enqueue(new Callback<List<Product2>>() {
             @Override
-            public void onResponse(Call<List<Product>> call, retrofit2.Response<List<Product>> response) {
+            public void onResponse(Call<List<Product2>> call, retrofit2.Response<List<Product2>> response) {
 
                 try {
 
                     if (response.isSuccessful()) {
 
-                        List<Product> productListResponse = response.body();
+                        List<Product2> product2ListResponse = response.body();
 
-                        setProductList(productListResponse);
+                        setProductList(product2ListResponse);
 
                     } else {
 
@@ -177,7 +172,7 @@ public class RecipesDetailsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Product>> call, Throwable t) {
+            public void onFailure(Call<List<Product2>> call, Throwable t) {
 
                 Toast.makeText(RecipesDetailsActivity.this, "Connection Failed", Toast.LENGTH_SHORT).show();
 

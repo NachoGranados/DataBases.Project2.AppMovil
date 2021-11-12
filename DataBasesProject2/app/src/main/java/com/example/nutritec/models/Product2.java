@@ -1,6 +1,6 @@
 package com.example.nutritec.models;
 
-public class Product {
+public class Product2 {
 
     private int barcode;
     private String approved;

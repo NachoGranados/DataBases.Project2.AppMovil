@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nutritec.R;
-import com.example.nutritec.models.Product;
 import com.example.nutritec.models.Product1;
 
 import java.util.List;
