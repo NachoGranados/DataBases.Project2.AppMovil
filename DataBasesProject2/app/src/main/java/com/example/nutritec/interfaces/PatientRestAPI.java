@@ -17,7 +17,8 @@ public interface PatientRestAPI {
     /*
       PA.1
       Description: Get a single patient based on its email or username
-      Url: /api/Patient/login/{credential} where credential is the email or username
+      Url: /api/Patient/login/{credential}
+           where credential is the email or username
     */
     @GET("/api/Patient/login/{credential}")
     public Call<Patient> PA1(@Path("credential") String credential);

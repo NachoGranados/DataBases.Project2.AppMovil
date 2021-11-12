@@ -15,7 +15,8 @@ public interface RecipeRestAPI {
     /*
       RE.1
       Description: Get all the recipes done by a patient
-      Url: /api/Recipe/getbypatient/{patientEmail} where patientEmail is the logged patient
+      Url: /api/Recipe/getbypatient/{patientEmail}
+           where patientEmail is the logged patient
     */
     @GET("/api/Recipe/getbypatient/{patientEmail}")
     public Call<List<Recipe>> RE1(@Path("patientEmail") String patientEmail);
@@ -23,7 +24,8 @@ public interface RecipeRestAPI {
     /*
       RE.3
       Description: Post a recipe
-      Url: /api/Recipe/postrecipe/{name}/{patientEmail} where patientEmail is the logged patient, name is the name of the recipe to add
+      Url: /api/Recipe/postrecipe/{name}/{patientEmail}
+           where patientEmail is the logged patient, name is the name of the recipe to add
     */
     @POST("/api/Recipe/postrecipe/{name}/{patientEmail}")
     public Call<Recipe> RE3(@Path("name") String name,
@@ -32,7 +34,8 @@ public interface RecipeRestAPI {
     /*
       RE.4
       Description: Get all the products in a recipe
-      Url: /api/Recipe/getproductsin/{number} where number is the number of the recipe
+      Url: /api/Recipe/getproductsin/{number}
+           where number is the number of the recipe
     */
     @GET("/api/Recipe/getproductsin/{number}")
     public Call<List<Recipe>> RE4(@Path("number") int number);
@@ -40,7 +43,8 @@ public interface RecipeRestAPI {
     /*
       RE.5
       Description: Get all the products that are not in a specific recipe
-      Url: /api/Recipe/getproductsnotin/{number} where number is the number of the recipe
+      Url: /api/Recipe/getproductsnotin/{number}
+           where number is the number of the recipe
     */
     @GET("/api/Recipe/getproductsnotin/{number}")
     public Call<List<Recipe>> RE5(@Path("number") int number);
@@ -48,7 +52,9 @@ public interface RecipeRestAPI {
     /*
       RE.6
       Description: Add a product in a recipe
-      Url: /api/Recipe/newproductinrecipe/{number}/{barcode}/{servings} is the logged patient, name is the name of the recipe to add, barcode is the barcode of the product and servings is the amount of times the product is in the recipe
+      Url: /api/Recipe/newproductinrecipe/{number}/{barcode}/{servings}
+           is the logged patient, name is the name of the recipe to add, barcode is the barcode
+           of the product and servings is the amount of times the product is in the recipe
     */
     @POST("/api/Recipe/newproductinrecipe/{number}/{barcode}/{servings}")
     public Call<Recipe> RE6(@Path("number") int number,
@@ -58,7 +64,9 @@ public interface RecipeRestAPI {
     /*
       RE.7
       Description: Gets the recipes that have not been consumed by the patient
-      Url: /api/Recipe/noconsumption/{patientEmail}/{day}/{meal} where patientEmail is the email of the patient that consumed the product, day and meal correspond to the time of consumption
+      Url: /api/Recipe/noconsumption/{patientEmail}/{day}/{meal}
+           where patientEmail is the email of the patient that consumed the product, day and meal
+           correspond to the time of consumption
     */
     @GET("/api/Recipe/noconsumption/{patientEmail}/{day}/{meal}")
     public Call<List<Product>> RE7(@Path("patientEmail") String patientEmail,
