@@ -11,18 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nutritec.R;
 import com.example.nutritec.models.Product;
+import com.example.nutritec.models.Product1;
 
 import java.util.List;
 
 public class Product1Adapter extends RecyclerView.Adapter<Product1Adapter.Product1ViewHolder> {
 
     Context context;
-    List<Product> productList;
+    List<Product1> product1List;
 
-    public Product1Adapter(Context context, List<Product> productList) {
+    public Product1Adapter(Context context, List<Product1> product1List) {
 
         this.context = context;
-        this.productList = productList;
+        this.product1List = product1List;
 
     }
 
@@ -39,17 +40,17 @@ public class Product1Adapter extends RecyclerView.Adapter<Product1Adapter.Produc
     @Override
     public void onBindViewHolder(@NonNull Product1ViewHolder holder, int position) {
 
-        Product product = productList.get(position);
+        Product1 product1 = product1List.get(position);
 
-        holder.barcodeTextView.setText("Barcode: " + product.getBarcode());
-        holder.nameTextView.setText("Name: " + product.getName());
+        holder.barcodeTextView.setText("Barcode: " + product1.getNumber());
+        holder.nameTextView.setText("Name: " + product1.getName());
 
     }
 
     @Override
     public int getItemCount() {
 
-        return productList.size();
+        return product1List.size();
 
     }
 

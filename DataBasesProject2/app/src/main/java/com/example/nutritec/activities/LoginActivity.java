@@ -48,6 +48,14 @@ public class LoginActivity extends AppCompatActivity {
 
                 PA1(patientEmail);
 
+
+
+                //Patient patient = new Patient(); // QUITAR
+
+                //openMainActivity(patient); // QUITAR
+
+
+
             }
 
         });

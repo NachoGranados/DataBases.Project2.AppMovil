@@ -2,11 +2,20 @@ package com.example.nutritec.models;
 
 public class Comment {
 
+    private String id;
     private String patientEmail;
     private String day;
     private String meal;
     private String commentOwnerEmail;
     private String commentText;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getPatientEmail() {
         return patientEmail;

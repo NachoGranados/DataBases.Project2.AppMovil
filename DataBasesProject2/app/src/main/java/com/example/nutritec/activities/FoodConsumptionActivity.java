@@ -5,9 +5,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
@@ -19,17 +17,16 @@ import android.widget.Toast;
 import com.example.nutritec.R;
 import com.example.nutritec.adapters.Product1Adapter;
 import com.example.nutritec.interfaces.CommentRestAPI;
-import com.example.nutritec.interfaces.PatientRestAPI;
 import com.example.nutritec.interfaces.ProductRestAPI;
 import com.example.nutritec.models.Comment;
-import com.example.nutritec.models.Patient;
-import com.example.nutritec.models.Product;
+import com.example.nutritec.models.Product1;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -61,13 +58,23 @@ public class FoodConsumptionActivity extends AppCompatActivity {
     private Button addRecipeButton;
 
     // Global variables
-    private static String day;
-    private static String meal;
+    private static String day = "Monday";
+    private static String meal = "Breakfast";
 
-    private List<Product> productList;
+    private List<Product1> product1List;
     private List<Comment> commentList;
 
     private RecyclerView recyclerView;
+
+
+
+
+
+
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,8 +221,9 @@ public class FoodConsumptionActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        productList = new ArrayList<>();
+        //product1List = new ArrayList<Product1>();
 
+        /*
         // QUITAR
         for(int i = 0; i < 5; i++) {
 
@@ -228,22 +236,44 @@ public class FoodConsumptionActivity extends AppCompatActivity {
 
         }
 
-        //PR8(MainActivity.getPatient().getEmail(), day, meal);
+         */
 
-        Product1Adapter product1Adapter = new Product1Adapter(FoodConsumptionActivity.this, productList);
+        PR8(MainActivity.getPatient().getEmail(), day, meal);
 
-        recyclerView.setAdapter(product1Adapter);
+        //Toast.makeText(FoodConsumptionActivity.this, Integer.toString(product1ListAux.size()), Toast.LENGTH_SHORT).show();
+
+
+
+
+
+
+        //Toast.makeText(FoodConsumptionActivity.this, MainActivity.getPatient().getEmail() + "*" + day + "*" + meal, Toast.LENGTH_SHORT).show();
+
+        //Toast.makeText(FoodConsumptionActivity.this, Integer.toString(product1List.size()), Toast.LENGTH_SHORT).show();
+
+        //Product1Adapter product1Adapter = new Product1Adapter(FoodConsumptionActivity.this, product1List);
+
+        //recyclerView.setAdapter(product1Adapter);
 
         feedbackContentTextView = findViewById(R.id.textViewFoodConsumptionFeedbackContent);
         feedbackContentTextView.setMovementMethod(new ScrollingMovementMethod());
 
+        feedbackContentTextView.setText("");
+
         commentList = new ArrayList<>();
 
-        //CO2(MainActivity.getPatient().getEmail(), day, meal);
+        CO2(MainActivity.getPatient().getEmail(), day, meal);
+
+
+
+
+
 
         // QUITAR
 
-        feedbackContentTextView.setText("");
+        //feedbackContentTextView.setText("");
+
+        /*
 
         for(int i = 0; i < 5; i++) {
 
@@ -255,6 +285,8 @@ public class FoodConsumptionActivity extends AppCompatActivity {
 
         }
 
+
+
         String commentText = "";
 
         for(int i = 0; i < commentList.size(); i++) {
@@ -263,7 +295,19 @@ public class FoodConsumptionActivity extends AppCompatActivity {
 
         }
 
+
+
         feedbackContentTextView.setText(commentText);
+
+
+
+
+
+         */
+
+
+
+
 
         commentEditText = findViewById(R.id.editTextFoodConsumptionComment);
 
@@ -280,7 +324,7 @@ public class FoodConsumptionActivity extends AppCompatActivity {
                 comment.setCommentOwnerEmail(MainActivity.getPatient().getEmail());
                 comment.setCommentText(commentEditText.getText().toString());
 
-                //CO3(comment);
+                CO3(comment);
 
             }
 
@@ -397,12 +441,12 @@ public class FoodConsumptionActivity extends AppCompatActivity {
         FoodConsumptionActivity.meal = meal;
     }
 
-    public List<Product> getProductList() {
-        return productList;
+    public List<Product1> getProduct1List() {
+        return product1List;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setProduct1List(List<Product1> product1List) {
+        this.product1List = product1List;
     }
 
     public List<Comment> getCommentList() {
@@ -416,23 +460,27 @@ public class FoodConsumptionActivity extends AppCompatActivity {
     // Gets products information from Rest API
     private void PR8(String email, String day, String meal) {
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000")
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://nutritecrg.azurewebsites.net")
                 .addConverterFactory(GsonConverterFactory.create()).build();
+
+        final List<Product1>[] product1ListAux = new List[]{new ArrayList<>()};
 
         ProductRestAPI productRestAPI = retrofit.create(ProductRestAPI.class);
 
-        Call<List<Product>> getCall = productRestAPI.PR8(email, day, meal);
-        getCall.enqueue(new Callback<List<Product>>() {
+        Call<List<Product1>> getCall = productRestAPI.PR8(email, day, meal);
+        getCall.enqueue(new Callback<List<Product1>>() {
             @Override
-            public void onResponse(Call<List<Product>> call, retrofit2.Response<List<Product>> response) {
+            public void onResponse(Call<List<Product1>> call, Response<List<Product1>> response) {
 
                 try {
 
                     if (response.isSuccessful()) {
 
-                        List<Product> productListResponse = response.body();
+                        List<Product1> product1ListResponse = response.body();
 
-                        setProductList(productListResponse);
+                        Product1Adapter product1Adapter = new Product1Adapter(FoodConsumptionActivity.this, product1ListResponse);
+
+                        recyclerView.setAdapter(product1Adapter);
 
                     } else {
 
@@ -443,13 +491,12 @@ public class FoodConsumptionActivity extends AppCompatActivity {
                 } catch (Exception exception) {
 
                     Toast.makeText(FoodConsumptionActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
-
                 }
 
             }
 
             @Override
-            public void onFailure(Call<List<Product>> call, Throwable t) {
+            public void onFailure(Call<List<Product1>> call, Throwable t) {
 
                 Toast.makeText(FoodConsumptionActivity.this, "Connection Failed", Toast.LENGTH_SHORT).show();
 
@@ -462,7 +509,7 @@ public class FoodConsumptionActivity extends AppCompatActivity {
     // Gets patient comments
     private void CO2(String email, String day, String meal) {
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000")
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://nutriteccommentsrg.azurewebsites.net")
                 .addConverterFactory(GsonConverterFactory.create()).build();
 
         CommentRestAPI commentRestAPI = retrofit.create(CommentRestAPI.class);
@@ -470,7 +517,7 @@ public class FoodConsumptionActivity extends AppCompatActivity {
         Call<List<Comment>> getCall = commentRestAPI.CO2(email, day, meal);
         getCall.enqueue(new Callback<List<Comment>>() {
             @Override
-            public void onResponse(Call<List<Comment>> call, retrofit2.Response<List<Comment>> response) {
+            public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
 
                 try {
 
@@ -478,7 +525,15 @@ public class FoodConsumptionActivity extends AppCompatActivity {
 
                         List<Comment> commentListResponse = response.body();
 
-                        setCommentList(commentListResponse);
+                        String commentText = "";
+
+                        for(int i = 0; i < commentListResponse.size(); i++) {
+
+                            commentText += commentListResponse.get(i).getCommentText() + "\n";
+
+                        }
+
+                        feedbackContentTextView.setText(commentText);
 
                     } else {
 
@@ -508,7 +563,7 @@ public class FoodConsumptionActivity extends AppCompatActivity {
     // Posts the given comment into the Rest API
     private void CO3(Comment comment) {
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000")
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://nutriteccommentsrg.azurewebsites.net")
                 .addConverterFactory(GsonConverterFactory.create()).build();
 
         CommentRestAPI commentRestAPI = retrofit.create(CommentRestAPI.class);
@@ -522,11 +577,13 @@ public class FoodConsumptionActivity extends AppCompatActivity {
 
                     if (response.isSuccessful()) {
 
-                        //Toast.makeText(FoodConsumptionActivity.this, "Successful Register", Toast.LENGTH_SHORT).show();
-
                         String commentText = feedbackContentTextView.getText().toString() + comment.getCommentText() + "\n";
 
                         feedbackContentTextView.setText(commentText);
+
+                        commentEditText.setText("");
+
+                        Toast.makeText(FoodConsumptionActivity.this, "Comment Sent Successfully", Toast.LENGTH_SHORT).show();
 
                     } else {
 
@@ -551,29 +608,5 @@ public class FoodConsumptionActivity extends AppCompatActivity {
         });
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

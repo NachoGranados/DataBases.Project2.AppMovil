@@ -1,7 +1,9 @@
 package com.example.nutritec.interfaces;
 
 import com.example.nutritec.models.Product;
+import com.example.nutritec.models.Product1;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -17,9 +19,9 @@ public interface ProductRestAPI {
            where patientEmail is the chosen patient day and meal filter the products/recipes
     */
     @GET("/api/Product/consumption/{patientEmail}/{day}/{meal}")
-    public Call<List<Product>> PR8(@Path("patientEmail") String patientEmail,
-                                   @Path("day") String day,
-                                   @Path("meal") String meal);
+    public Call<List<Product1>> PR8(@Path("patientEmail") String patientEmail,
+                                         @Path("day") String day,
+                                         @Path("meal") String meal);
 
     /*
       PR.9

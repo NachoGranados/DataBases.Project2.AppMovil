@@ -48,6 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
         // Variables assignment to control XML items
         emailText = findViewById(R.id.editTextRegisterEmail);
         usernameText = findViewById(R.id.editTextRegisterUsername);
+        firstNameText = findViewById(R.id.editTextRegisterFirstName);
         lastName1Text = findViewById(R.id.editTextRegisterLastName1);
         lastName2Text = findViewById(R.id.editTextRegisterLastName2);
         birthDateText = findViewById(R.id.editTextRegisterBirthDate);
@@ -66,8 +67,6 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                /*
 
                 String email = emailText.getText().toString();
                 String username = usernameText.getText().toString();
@@ -89,21 +88,15 @@ public class RegisterActivity extends AppCompatActivity {
                     patient.setLastName1(lastName1);
                     patient.setLastName2(lastName2);
                     patient.setBirthDate(birthDate);
-                    patient.setPassword(password);
+                    patient.setPassowrd(password);
 
                     PA2(patient);
-
-                    openLoginActivity();
 
                 } else {
 
                     Toast.makeText(RegisterActivity.this, "Complete all the information", Toast.LENGTH_SHORT).show();
 
                 }
-
-                */
-
-                openLoginActivity();
 
             }
 
@@ -114,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
     // Posts the given patient information into the REST API
     private void PA2(Patient patient) {
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000")
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://nutritecrg.azurewebsites.net")
                 .addConverterFactory(GsonConverterFactory.create()).build();
 
         PatientRestAPI patientRestAPI = retrofit.create(PatientRestAPI.class);
@@ -134,7 +127,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     } else {
 
-                        Toast.makeText(RegisterActivity.this, "Register Failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
 
                     }
 
