@@ -8,7 +8,7 @@ public class Patient {
     private String lastName1;
     private String lastName2;
     private String birthDate;
-    private String password;
+    private String passowrd;
     private String nutritionistEmail;
 
     public String getEmail() {
@@ -59,12 +59,12 @@ public class Patient {
         this.birthDate = birthDate;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPassowrd() {
+        return passowrd;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassowrd(String passowrd) {
+        this.passowrd = passowrd;
     }
 
     public String getNutritionistEmail() {
@@ -74,5 +74,4 @@ public class Patient {
     public void setNutritionistEmail(String nutritionistEmail) {
         this.nutritionistEmail = nutritionistEmail;
     }
-
 }

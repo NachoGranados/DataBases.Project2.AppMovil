@@ -18,6 +18,9 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class LoginActivity extends AppCompatActivity {
 
     // Variables to control XML items
@@ -43,12 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 String patientEmail = emailText.getText().toString();
 
-                // GET PATIENT REST API METHOD
-                //PA1(patientEmail);
-
-                Patient patient = new Patient(); // QUITAR
-
-                openMainActivity(patient);
+                PA1(patientEmail);
 
             }
 
@@ -86,10 +84,42 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private String MD5Encryption(String passwordToHash) {
+
+        String generatedPassword = null;
+
+        try {
+
+            // Create MessageDigest instance for MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+
+            // Add password bytes to digest
+            md.update(passwordToHash.getBytes());
+
+            // Get the hash's bytes
+            byte[] bytes = md.digest();
+
+            // This bytes[] has bytes in decimal format. Convert it to hexadecimal format
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < bytes.length; i++) {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+
+            // Get complete hashed password in hex format
+            generatedPassword = sb.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        return generatedPassword;
+
+    }
+
     // Gets the patient information from the REST API
     private void PA1(String credential) {
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000")
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://nutritecrg.azurewebsites.net")
                 .addConverterFactory(GsonConverterFactory.create()).build();
 
         PatientRestAPI patientRestAPI = retrofit.create(PatientRestAPI.class);
@@ -105,11 +135,13 @@ public class LoginActivity extends AppCompatActivity {
 
                         Patient patient = response.body();
 
-                        if (passwordText.getText().toString().equals(patient.getPassword())) {
+                        String passwordEncrypted = MD5Encryption(passwordText.getText().toString());
+
+                        if (passwordEncrypted.equals(patient.getPassowrd())) {
 
                             Toast.makeText(LoginActivity.this, "Successful Login", Toast.LENGTH_SHORT).show();
 
-                            // openMainActivity(patient);
+                            openMainActivity(patient);
 
                         } else {
 
