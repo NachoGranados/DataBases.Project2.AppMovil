@@ -36,7 +36,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="100dp"
-                android:text="ADD RECIPE" />
+                android:text="ADD RECIPE"
+                android:background="#A0B571"/>
 
             <Button
                 android:id="@+id/buttonRecipesAddSearch"
@@ -44,7 +45,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="16dp"
-                android:text="SEARCH" />
+                android:text="SEARCH"
+                android:background="#A0B571"/>
 
         </LinearLayout>
 

@@ -62,7 +62,8 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:text="CREATE" />
+            android:text="CREATE"
+            android:background="#A0B571"/>
 
         <Button
             android:id="@+id/buttonRecipesAddRecipeCancel"
@@ -72,7 +73,8 @@
             android:layout_marginTop="475dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:text="CANCEL" />
+            android:text="CANCEL"
+            android:background="#A0B571"/>
 
     </LinearLayout>
 
