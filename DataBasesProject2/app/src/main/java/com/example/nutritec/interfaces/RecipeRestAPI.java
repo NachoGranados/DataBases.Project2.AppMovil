@@ -22,6 +22,19 @@ public interface RecipeRestAPI {
     public Call<List<Recipe>> RE1(@Path("patientEmail") String patientEmail);
 
     /*
+      RE.2
+      Description: Add a recipe to the consumption table
+      Url: /api/Recipe/consumption/addrecipe/{number}/{patientEmail}/{day}/{meal}
+           where patientEmail is the logged patient, number is the number of the recipe to add
+           and day and meal are the time of consumption.
+    */
+    @POST("/api/Recipe/consumption/addrecipe/{number}/{patientEmail}/{day}/{meal}")
+    public Call<Recipe> RE2(@Path("number") int number,
+                            @Path("patientEmail") String patientEmail,
+                            @Path("day") String day,
+                            @Path("meal") String meal);
+
+    /*
       RE.3
       Description: Post a recipe
       Url: /api/Recipe/postrecipe/{name}/{patientEmail}
@@ -69,7 +82,7 @@ public interface RecipeRestAPI {
            correspond to the time of consumption
     */
     @GET("/api/Recipe/noconsumption/{patientEmail}/{day}/{meal}")
-    public Call<List<Product>> RE7(@Path("patientEmail") String patientEmail,
+    public Call<List<Recipe>> RE7(@Path("patientEmail") String patientEmail,
                                    @Path("day") String day,
                                    @Path("meal") String meal);
 

@@ -65,14 +65,11 @@ public class Product2Adapter extends RecyclerView.Adapter<Product2Adapter.Produc
 
                 Toast.makeText(context, "Product Addition Successful", Toast.LENGTH_SHORT).show();
 
-                /*
                 PR9(product.getBarcode(),
                     MainActivity.getPatient().getEmail(),
                     FoodConsumptionActivity.getDay(),
                     FoodConsumptionActivity.getMeal(),
                     FoodConsumptionAddProductActivity.getServings());
-
-                 */
 
             }
         });

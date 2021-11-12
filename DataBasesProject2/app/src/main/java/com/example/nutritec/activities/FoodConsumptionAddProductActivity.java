@@ -38,24 +38,6 @@ public class FoodConsumptionAddProductActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,32 +65,11 @@ public class FoodConsumptionAddProductActivity extends AppCompatActivity {
 
         }
 
-        PR1("Approved ");
+        PR10(MainActivity.getPatient().getEmail(), FoodConsumptionActivity.getDay(), FoodConsumptionActivity.getMeal());
 
         Product2Adapter product2Adapter = new Product2Adapter(FoodConsumptionAddProductActivity.this, productList);
 
         recyclerView.setAdapter(product2Adapter);
-
-
-
-
-
-
-
-
-
-
-
-
-        // ????????????????????????
-        //PR10(MainActivity.getPatient().getEmail(), FoodConsumptionActivity.getDay(), FoodConsumptionActivity.getMeal());
-
-
-
-
-
-
-
 
         goBackButton = (Button) findViewById(R.id.buttonFoodConsumptionAddProductGoBack);
         goBackButton.setOnClickListener(new View.OnClickListener() {
@@ -144,80 +105,6 @@ public class FoodConsumptionAddProductActivity extends AppCompatActivity {
     public static void setServings(int servings) {
         FoodConsumptionAddProductActivity.servings = servings;
     }
-
-    // Gets products information from Rest API
-    private void PR1(String state) {
-
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000")
-                .addConverterFactory(GsonConverterFactory.create()).build();
-
-        ProductRestAPI productRestAPI = retrofit.create(ProductRestAPI.class);
-
-        Call<List<Product>> getCall = productRestAPI.PR1(state);
-        getCall.enqueue(new Callback<List<Product>>() {
-            @Override
-            public void onResponse(Call<List<Product>> call, retrofit2.Response<List<Product>> response) {
-
-                try {
-
-                    if (response.isSuccessful()) {
-
-                        List<Product> productListResponse = response.body();
-
-                        setProductList(productListResponse);
-
-                    } else {
-
-                        Toast.makeText(FoodConsumptionAddProductActivity.this, "Error: Products GET Failure", Toast.LENGTH_SHORT).show();
-
-                    }
-
-                } catch (Exception exception) {
-
-                    Toast.makeText(FoodConsumptionAddProductActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<List<Product>> call, Throwable t) {
-
-                Toast.makeText(FoodConsumptionAddProductActivity.this, "Connection Failed", Toast.LENGTH_SHORT).show();
-
-            }
-
-        });
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     // Gets products information from Rest API
     private void PR10(String email, String day, String meal) {
