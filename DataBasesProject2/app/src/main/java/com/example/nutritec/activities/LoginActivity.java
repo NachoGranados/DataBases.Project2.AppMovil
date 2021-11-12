@@ -41,10 +41,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                // GET PATIENT REST API METHOD
-                PA1(emailText.getText().toString());
+                String patientEmail = emailText.getText().toString();
 
-                openMainActivity();
+                // GET PATIENT REST API METHOD
+                //PA1(patientEmail);
+
+                Patient patient = new Patient(); // QUITAR
+
+                openMainActivity(patient);
 
             }
 
@@ -72,9 +76,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     // Opens the activity where the user navigate through the app
-    private void openMainActivity() {
+    private void openMainActivity(Patient patient) {
 
         Intent intent = new Intent(this, MainActivity.class);
+
+        MainActivity.setPatient(patient);
+
         startActivity(intent);
 
     }

@@ -10,13 +10,18 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.nutritec.R;
+import com.example.nutritec.models.Patient;
 
 public class MainActivity extends AppCompatActivity {
 
     // Variables to control XML items
     DrawerLayout drawerLayout;
+
+    // Global variables
+    private static Patient patient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +156,16 @@ public class MainActivity extends AppCompatActivity {
         closeDrawer(drawerLayout);
 
     }
+
+
+    public static Patient getPatient() {
+        return patient;
+    }
+
+    public static void setPatient(Patient patient) {
+        MainActivity.patient = patient;
+    }
+
 }
 
 

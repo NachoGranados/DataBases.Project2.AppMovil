@@ -28,6 +28,6 @@ public interface CommentRestAPI {
       Url: /api/Comment/postcomment
     */
     @POST("/api/Comment/postcomment")
-    public Call<Comment> CO2(@Body Comment comment);
+    public Call<Comment> CO3(@Body Comment comment);
 
 }

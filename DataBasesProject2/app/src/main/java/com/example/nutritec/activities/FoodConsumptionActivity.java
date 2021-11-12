@@ -2,15 +2,36 @@ package com.example.nutritec.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nutritec.R;
+import com.example.nutritec.adapters.Product1Adapter;
+import com.example.nutritec.interfaces.CommentRestAPI;
+import com.example.nutritec.interfaces.PatientRestAPI;
+import com.example.nutritec.interfaces.ProductRestAPI;
+import com.example.nutritec.models.Comment;
+import com.example.nutritec.models.Patient;
+import com.example.nutritec.models.Product;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FoodConsumptionActivity extends AppCompatActivity {
 
@@ -33,6 +54,7 @@ public class FoodConsumptionActivity extends AppCompatActivity {
     TextView mealTextView;
 
     private TextView feedbackContentTextView;
+    private EditText commentEditText;
 
     private Button sendButton;
     private Button addProductButton;
@@ -41,6 +63,12 @@ public class FoodConsumptionActivity extends AppCompatActivity {
     // Global variables
     private String day;
     private String meal;
+
+    private List<Product> productList;
+
+    private List<Comment> commentList;
+
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,15 +211,77 @@ public class FoodConsumptionActivity extends AppCompatActivity {
         dayTextView = findViewById(R.id.textViewFoodConsumptionDay);
         mealTextView = findViewById(R.id.textViewFoodConsumptionMeal);
 
+        recyclerView = findViewById(R.id.recyclerViewFoodConsumption);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        productList = new ArrayList<>();
+
+        // QUITAR
+        for(int i = 0; i < 5; i++) {
+
+            Product product = new Product();
+
+            product.setBarcode(i);
+            product.setName("Rice");
+
+            productList.add(product);
+
+        }
+
+        //PR8(MainActivity.getPatient().getEmail(), day, meal);
+
+        Product1Adapter product1Adapter = new Product1Adapter(FoodConsumptionActivity.this, productList);
+
+        recyclerView.setAdapter(product1Adapter);
+
         feedbackContentTextView = findViewById(R.id.textViewFoodConsumptionFeedbackContent);
         feedbackContentTextView.setMovementMethod(new ScrollingMovementMethod());
+
+        commentList = new ArrayList<>();
+
+        //CO2(MainActivity.getPatient().getEmail(), day, meal);
+
+        // QUITAR
+
+        feedbackContentTextView.setText("");
+
+        for(int i = 0; i < 5; i++) {
+
+            Comment comment = new Comment();
+
+            comment.setCommentText("Hola -> " + Integer.toString(i));
+
+            commentList.add(comment);
+
+        }
+
+        String commentText = "";
+
+        for(int i = 0; i < commentList.size(); i++) {
+
+            commentText += commentList.get(i).getCommentText() + "\n";
+
+        }
+
+        feedbackContentTextView.setText(commentText);
+
+        commentEditText = findViewById(R.id.editTextFoodConsumptionComment);
 
         sendButton = (Button) findViewById(R.id.buttonFoodConsumptionSend);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                //openLoginActivity();
+                Comment comment = new Comment();
+
+                comment.setPatientEmail(MainActivity.getPatient().getEmail());
+                comment.setDay(day);
+                comment.setMeal(meal);
+                comment.setCommentOwnerEmail(MainActivity.getPatient().getEmail());
+                comment.setCommentText(commentEditText.getText().toString());
+
+                //CO3(comment);
 
             }
 
@@ -218,7 +308,6 @@ public class FoodConsumptionActivity extends AppCompatActivity {
             }
 
         });
-
 
     }
 
@@ -292,5 +381,184 @@ public class FoodConsumptionActivity extends AppCompatActivity {
         MainActivity.closeDrawer(drawerLayout);
 
     }
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
+    }
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
+
+    // Gets products information from Rest API
+    private void PR8(String email, String day, String meal) {
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+
+        ProductRestAPI productRestAPI = retrofit.create(ProductRestAPI.class);
+
+        Call<List<Product>> getCall = productRestAPI.PR8(email, day, meal);
+        getCall.enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(Call<List<Product>> call, retrofit2.Response<List<Product>> response) {
+
+                try {
+
+                    if (response.isSuccessful()) {
+
+                        List<Product> productListResponse = response.body();
+
+                        setProductList(productListResponse);
+
+                    } else {
+
+                        Toast.makeText(FoodConsumptionActivity.this, "Error: Products GET Failure", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                } catch (Exception exception) {
+
+                    Toast.makeText(FoodConsumptionActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+
+                Toast.makeText(FoodConsumptionActivity.this, "Connection Failed", Toast.LENGTH_SHORT).show();
+
+            }
+
+        });
+
+    }
+
+    // Gets patient comments
+    private void CO2(String email, String day, String meal) {
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+
+        CommentRestAPI commentRestAPI = retrofit.create(CommentRestAPI.class);
+
+        Call<List<Comment>> getCall = commentRestAPI.CO2(email, day, meal);
+        getCall.enqueue(new Callback<List<Comment>>() {
+            @Override
+            public void onResponse(Call<List<Comment>> call, retrofit2.Response<List<Comment>> response) {
+
+                try {
+
+                    if (response.isSuccessful()) {
+
+                        List<Comment> commentListResponse = response.body();
+
+                        setCommentList(commentListResponse);
+
+                    } else {
+
+                        Toast.makeText(FoodConsumptionActivity.this, "Error: Comments GET Failure", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                } catch (Exception exception) {
+
+                    Toast.makeText(FoodConsumptionActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Comment>> call, Throwable t) {
+
+                Toast.makeText(FoodConsumptionActivity.this, "Connection Failed", Toast.LENGTH_SHORT).show();
+
+            }
+
+        });
+
+    }
+
+    // Posts the given comment into the Rest API
+    private void CO3(Comment comment) {
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+
+        CommentRestAPI commentRestAPI = retrofit.create(CommentRestAPI.class);
+
+        Call<Comment> postCall = commentRestAPI.CO3(comment);
+        postCall.enqueue(new Callback<Comment>() {
+            @Override
+            public void onResponse(Call<Comment> call, retrofit2.Response<Comment> response) {
+
+                try {
+
+                    if (response.isSuccessful()) {
+
+                        //Toast.makeText(FoodConsumptionActivity.this, "Successful Register", Toast.LENGTH_SHORT).show();
+
+                        String commentText = feedbackContentTextView.getText().toString() + comment.getCommentText() + "\n";
+
+                        feedbackContentTextView.setText(commentText);
+
+                    } else {
+
+                        Toast.makeText(FoodConsumptionActivity.this, "Error: Comment POST Failure", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                } catch (Exception exception) {
+
+                    Toast.makeText(FoodConsumptionActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Comment> call, Throwable t) {
+
+                Toast.makeText(FoodConsumptionActivity.this, "Connection Failed", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
