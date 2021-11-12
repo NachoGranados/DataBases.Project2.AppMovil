@@ -24,16 +24,31 @@
             android:textSize="25sp"
             android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/textViewRecipesDetailsProducts"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="Products"
-            android:textColor="@color/white"
-            android:textSize="20sp"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewRecipesDetailsProducts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Products"
+                android:textColor="@color/white"
+                android:textSize="20sp"/>
+
+            <Button
+                android:id="@+id/buttonRecipesDetailsSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="210dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="SEARCH" />
+
+        </LinearLayout>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"

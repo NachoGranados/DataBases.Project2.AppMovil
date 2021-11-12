@@ -41,8 +41,8 @@ public interface RecipeRestAPI {
            where patientEmail is the logged patient, name is the name of the recipe to add
     */
     @POST("/api/Recipe/postrecipe/{name}/{patientEmail}")
-    public Call<Recipe> RE3(@Path("name") String name,
-                            @Path("patientEmail") String patientEmail);
+    public Call<Void> RE3(@Path("name") String name,
+                          @Path("patientEmail") String patientEmail);
 
     /*
       RE.4
@@ -70,9 +70,9 @@ public interface RecipeRestAPI {
            of the product and servings is the amount of times the product is in the recipe
     */
     @POST("/api/Recipe/newproductinrecipe/{number}/{barcode}/{servings}")
-    public Call<Product2> RE6(@Path("number") int number,
-                              @Path("barcode") int barcode,
-                              @Path("servings") int servings);
+    public Call<Void> RE6(@Path("number") int number,
+                          @Path("barcode") int barcode,
+                          @Path("servings") int servings);
 
     /*
       RE.7

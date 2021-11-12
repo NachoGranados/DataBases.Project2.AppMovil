@@ -29,10 +29,9 @@ public class RecipesDetailsActivity extends AppCompatActivity {
     // Variables to control XML items
     private TextView recipeNameText;
 
+    private Button searchButton;
     private Button goBackButton;
     private Button addProductButton;
-
-    private List<Product2> product2List;
 
     private RecyclerView recyclerView;
 
@@ -49,30 +48,22 @@ public class RecipesDetailsActivity extends AppCompatActivity {
         recipeNameText = findViewById(R.id.textViewRecipesDetailsRecipeName);
         recipeNameText.setText("Recipe: " + name);
 
+        searchButton = (Button) findViewById(R.id.buttonRecipesDetailsSearch);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                RE4(number);
+
+            }
+
+        });
+
         recyclerView = findViewById(R.id.recyclerViewRecipesDetails);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        product2List = new ArrayList<>();
-
-        // QUITAR
-        for(int i = 0; i < 5; i++) {
-
-            Product2 product2 = new Product2();
-
-            product2.setBarcode(i);
-            product2.setName("Rice");
-            product2.setDescription("A serving of rice");
-
-            product2List.add(product2);
-
-        }
-
         RE4(number);
-
-        Product3Adapter product3Adapter = new Product3Adapter(RecipesDetailsActivity.this, product2List);
-
-        recyclerView.setAdapter(product3Adapter);
 
         goBackButton = (Button) findViewById(R.id.buttonRecipesDetailsGoBack);
         goBackButton.setOnClickListener(new View.OnClickListener() {
@@ -114,14 +105,6 @@ public class RecipesDetailsActivity extends AppCompatActivity {
         RecipesDetailsActivity.number = number;
     }
 
-    public List<Product2> getProductList() {
-        return product2List;
-    }
-
-    public void setProductList(List<Product2> product2List) {
-        this.product2List = product2List;
-    }
-
     private void goBackToRecipesActivity() {
 
         this.finish();
@@ -139,7 +122,7 @@ public class RecipesDetailsActivity extends AppCompatActivity {
     // Gets products information from Rest API
     private void RE4(int number) {
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000")
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://nutritecrg.azurewebsites.net")
                 .addConverterFactory(GsonConverterFactory.create()).build();
 
         RecipeRestAPI recipeRestAPI = retrofit.create(RecipeRestAPI.class);
@@ -155,7 +138,9 @@ public class RecipesDetailsActivity extends AppCompatActivity {
 
                         List<Product2> product2ListResponse = response.body();
 
-                        setProductList(product2ListResponse);
+                        Product3Adapter product3Adapter = new Product3Adapter(RecipesDetailsActivity.this, product2ListResponse);
+
+                        recyclerView.setAdapter(product3Adapter);
 
                     } else {
 

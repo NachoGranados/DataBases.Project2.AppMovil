@@ -31,8 +31,7 @@ public class RecipesActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
 
     private Button addRecipeButton;
-
-    private List<Recipe> recipeList;
+    private Button searchButton;
 
     private RecyclerView recyclerView;
 
@@ -55,29 +54,22 @@ public class RecipesActivity extends AppCompatActivity {
 
         });
 
+        searchButton = (Button) findViewById(R.id.buttonRecipesAddSearch);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                RE1(MainActivity.getPatient().getEmail());
+
+            }
+
+        });
+
         recyclerView = findViewById(R.id.recyclerViewRecipes);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        recipeList = new ArrayList<>();
-
-        // QUITAR
-        for(int i = 0; i < 5; i++) {
-
-            Recipe recipe = new Recipe();
-
-            recipe.setNumber(i);
-            recipe.setName("Pinto");
-
-            recipeList.add(recipe);
-
-        }
-
         RE1(MainActivity.getPatient().getEmail());
-
-        Recipe2Adapter recipe2Adapter = new Recipe2Adapter(RecipesActivity.this, recipeList);
-
-        recyclerView.setAdapter(recipe2Adapter);
 
     }
 
@@ -144,18 +136,10 @@ public class RecipesActivity extends AppCompatActivity {
 
     }
 
-    public List<Recipe> getRecipeList() {
-        return recipeList;
-    }
-
-    public void setRecipeList(List<Recipe> recipeList) {
-        this.recipeList = recipeList;
-    }
-
     // Gets recipes information from Rest API
     private void RE1(String email) {
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000")
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://nutritecrg.azurewebsites.net")
                 .addConverterFactory(GsonConverterFactory.create()).build();
 
         RecipeRestAPI recipeRestAPI = retrofit.create(RecipeRestAPI.class);
@@ -171,7 +155,9 @@ public class RecipesActivity extends AppCompatActivity {
 
                         List<Recipe> recipeListResponse = response.body();
 
-                        setRecipeList(recipeListResponse);
+                        Recipe2Adapter recipe2Adapter = new Recipe2Adapter(RecipesActivity.this, recipeListResponse);
+
+                        recyclerView.setAdapter(recipe2Adapter);
 
                     } else {
 
@@ -197,20 +183,5 @@ public class RecipesActivity extends AppCompatActivity {
         });
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

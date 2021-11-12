@@ -100,15 +100,15 @@ public class Product4Adapter extends RecyclerView.Adapter<Product4Adapter.Produc
     // Posts the given product into the Rest API
     private void RE6(int number, int barcode, int servings) {
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000")
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://nutritecrg.azurewebsites.net")
                 .addConverterFactory(GsonConverterFactory.create()).build();
 
         RecipeRestAPI recipeRestAPI = retrofit.create(RecipeRestAPI.class);
 
-        Call<Product2> postCall = recipeRestAPI.RE6(number, barcode, servings);
-        postCall.enqueue(new Callback<Product2>() {
+        Call<Void> postCall = recipeRestAPI.RE6(number, barcode, servings);
+        postCall.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Product2> call, retrofit2.Response<Product2> response) {
+            public void onResponse(Call<Void> call, retrofit2.Response<Void> response) {
 
                 try {
 
@@ -131,7 +131,7 @@ public class Product4Adapter extends RecyclerView.Adapter<Product4Adapter.Produc
             }
 
             @Override
-            public void onFailure(Call<Product2> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
 
                 Toast.makeText(context, "Connection Failed", Toast.LENGTH_SHORT).show();
 

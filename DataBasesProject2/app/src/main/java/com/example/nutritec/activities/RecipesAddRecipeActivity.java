@@ -43,6 +43,8 @@ public class RecipesAddRecipeActivity extends AppCompatActivity {
 
                 RE3(name, MainActivity.getPatient().getEmail());
 
+                goBackToRecipesActivity();
+
             }
 
         });
@@ -69,21 +71,25 @@ public class RecipesAddRecipeActivity extends AppCompatActivity {
     // Posts the given recipe into the Rest API
     private void RE3(String name, String email) {
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000")
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://nutritecrg.azurewebsites.net")
                 .addConverterFactory(GsonConverterFactory.create()).build();
 
         RecipeRestAPI recipeRestAPI = retrofit.create(RecipeRestAPI.class);
 
-        Call<Recipe> getCall = recipeRestAPI.RE3(name, email);
-        getCall.enqueue(new Callback<Recipe>() {
+        Call<Void> getCall = recipeRestAPI.RE3(name, email);
+        getCall.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Recipe> call, retrofit2.Response<Recipe> response) {
+            public void onResponse(Call<Void> call, retrofit2.Response<Void> response) {
 
                 try {
 
                     if (response.isSuccessful()) {
 
                         Toast.makeText(RecipesAddRecipeActivity.this, "Recipe Creation Successful", Toast.LENGTH_SHORT).show();
+
+                        recipeNameText.setText("");
+
+                        goBackToRecipesActivity();
 
                     } else {
 
@@ -100,7 +106,7 @@ public class RecipesAddRecipeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Recipe> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
 
                 Toast.makeText(RecipesAddRecipeActivity.this, "Connection Failed", Toast.LENGTH_SHORT).show();
 

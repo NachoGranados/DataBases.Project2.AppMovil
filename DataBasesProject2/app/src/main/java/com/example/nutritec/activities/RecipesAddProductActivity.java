@@ -35,8 +35,6 @@ public class RecipesAddProductActivity extends AppCompatActivity {
     private Button goBackButton;
 
     // Global variables
-    private List<Product2> product2List;
-
     private static int servings = 1;
 
     private RecyclerView recyclerView;
@@ -81,26 +79,7 @@ public class RecipesAddProductActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        product2List = new ArrayList<>();
-
-        // QUITAR
-        for(int i = 0; i < 5; i++) {
-
-            Product2 product2 = new Product2();
-
-            product2.setBarcode(i);
-            product2.setName("Rice");
-            product2.setDescription("A serving of rice");
-
-            product2List.add(product2);
-
-        }
-
         RE5(RecipesDetailsActivity.getNumber());
-
-        Product4Adapter product4Adapter = new Product4Adapter(RecipesAddProductActivity.this, product2List);
-
-        recyclerView.setAdapter(product4Adapter);
 
         goBackButton = (Button) findViewById(R.id.buttonRecipesAddProductGoBack);
         goBackButton.setOnClickListener(new View.OnClickListener() {
@@ -113,14 +92,6 @@ public class RecipesAddProductActivity extends AppCompatActivity {
 
         });
 
-    }
-
-    public List<Product2> getProductList() {
-        return product2List;
-    }
-
-    public void setProductList(List<Product2> product2List) {
-        this.product2List = product2List;
     }
 
     public static int getServings() {
@@ -140,7 +111,7 @@ public class RecipesAddProductActivity extends AppCompatActivity {
     // Gets products information from Rest API
     private void RE5(int number) {
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000")
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://nutritecrg.azurewebsites.net")
                 .addConverterFactory(GsonConverterFactory.create()).build();
 
         RecipeRestAPI recipeRestAPI = retrofit.create(RecipeRestAPI.class);
@@ -156,7 +127,9 @@ public class RecipesAddProductActivity extends AppCompatActivity {
 
                         List<Product2> product2ListResponse = response.body();
 
-                        setProductList(product2ListResponse);
+                        Product4Adapter product4Adapter = new Product4Adapter(RecipesAddProductActivity.this, product2ListResponse);
+
+                        recyclerView.setAdapter(product4Adapter);
 
                     } else {
 
