@@ -6,8 +6,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.nutritec.R;
+import com.example.nutritec.interfaces.RecipeRestAPI;
+import com.example.nutritec.models.Recipe;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Path;
 
 public class RecipesAddRecipeActivity extends AppCompatActivity {
 
@@ -30,7 +39,9 @@ public class RecipesAddRecipeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //openMainActivity();
+                String name = recipeNameText.getText().toString();
+
+                RE3(name, MainActivity.getPatient().getEmail());
 
             }
 
@@ -52,6 +63,50 @@ public class RecipesAddRecipeActivity extends AppCompatActivity {
     private void goBackToRecipesActivity() {
 
         this.finish();
+
+    }
+
+    // Posts the given recipe into the Rest API
+    private void RE3(String name, String email) {
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+
+        RecipeRestAPI recipeRestAPI = retrofit.create(RecipeRestAPI.class);
+
+        Call<Recipe> getCall = recipeRestAPI.RE3(name, email);
+        getCall.enqueue(new Callback<Recipe>() {
+            @Override
+            public void onResponse(Call<Recipe> call, retrofit2.Response<Recipe> response) {
+
+                try {
+
+                    if (response.isSuccessful()) {
+
+                        Toast.makeText(RecipesAddRecipeActivity.this, "Recipe Creation Successful", Toast.LENGTH_SHORT).show();
+
+                    } else {
+
+                        Toast.makeText(RecipesAddRecipeActivity.this, "Error: Recipe POST Failure", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                } catch (Exception exception) {
+
+                    Toast.makeText(RecipesAddRecipeActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Recipe> call, Throwable t) {
+
+                Toast.makeText(RecipesAddRecipeActivity.this, "Connection Failed", Toast.LENGTH_SHORT).show();
+
+            }
+
+        });
 
     }
 

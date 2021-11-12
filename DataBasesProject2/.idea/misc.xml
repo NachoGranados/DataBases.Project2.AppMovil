@@ -28,10 +28,16 @@
         <entry key="..\:/Users/ExtremeTech/Documents/GitHub/DataBases.Project2.AppMovil/DataBasesProject2/app/src/main/res/drawable/button_border.xml" value="0.38177083333333334" />
         <entry key="..\:/Users/ExtremeTech/Documents/GitHub/DataBases.Project2.AppMovil/DataBasesProject2/app/src/main/res/drawable/button_rounded.xml" value="0.38177083333333334" />
         <entry key="..\:/Users/ExtremeTech/Documents/GitHub/DataBases.Project2.AppMovil/DataBasesProject2/app/src/main/res/drawable/custom_input.xml" value="0.38177083333333334" />
+        <entry key="..\:/Users/ExtremeTech/Documents/GitHub/DataBases.Project2.AppMovil/DataBasesProject2/app/src/main/res/drawable/ic_email.xml" value="0.38177083333333334" />
         <entry key="..\:/Users/ExtremeTech/Documents/GitHub/DataBases.Project2.AppMovil/DataBasesProject2/app/src/main/res/drawable/ic_food_consumption.xml" value="0.38177083333333334" />
+        <entry key="..\:/Users/ExtremeTech/Documents/GitHub/DataBases.Project2.AppMovil/DataBasesProject2/app/src/main/res/drawable/ic_home.xml" value="0.38177083333333334" />
+        <entry key="..\:/Users/ExtremeTech/Documents/GitHub/DataBases.Project2.AppMovil/DataBasesProject2/app/src/main/res/drawable/ic_increment.xml" value="0.38177083333333334" />
+        <entry key="..\:/Users/ExtremeTech/Documents/GitHub/DataBases.Project2.AppMovil/DataBasesProject2/app/src/main/res/drawable/ic_minus.xml" value="0.38177083333333334" />
+        <entry key="..\:/Users/ExtremeTech/Documents/GitHub/DataBases.Project2.AppMovil/DataBasesProject2/app/src/main/res/drawable/ic_password.xml" value="0.38177083333333334" />
+        <entry key="..\:/Users/ExtremeTech/Documents/GitHub/DataBases.Project2.AppMovil/DataBasesProject2/app/src/main/res/drawable/ic_plus.xml" value="0.38177083333333334" />
         <entry key="..\:/Users/ExtremeTech/Documents/GitHub/DataBases.Project2.AppMovil/DataBasesProject2/app/src/main/res/drawable/recipe_item_2.xml" value="0.38177083333333334" />
         <entry key="..\:/Users/ExtremeTech/Documents/GitHub/DataBases.Project2.AppMovil/DataBasesProject2/app/src/main/res/layout/activity_food_consumption.xml" value="0.365625" />
-        <entry key="..\:/Users/ExtremeTech/Documents/GitHub/DataBases.Project2.AppMovil/DataBasesProject2/app/src/main/res/layout/activity_food_consumption_add_product.xml" value="0.24556962025316456" />
+        <entry key="..\:/Users/ExtremeTech/Documents/GitHub/DataBases.Project2.AppMovil/DataBasesProject2/app/src/main/res/layout/activity_food_consumption_add_product.xml" value="0.33" />
         <entry key="..\:/Users/ExtremeTech/Documents/GitHub/DataBases.Project2.AppMovil/DataBasesProject2/app/src/main/res/layout/activity_food_consumption_add_recipe.xml" value="0.28354430379746837" />
         <entry key="..\:/Users/ExtremeTech/Documents/GitHub/DataBases.Project2.AppMovil/DataBasesProject2/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/ExtremeTech/Documents/GitHub/DataBases.Project2.AppMovil/DataBasesProject2/app/src/main/res/layout/activity_recipes.xml" value="0.365625" />

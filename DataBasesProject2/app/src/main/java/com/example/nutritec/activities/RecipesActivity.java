@@ -2,13 +2,28 @@ package com.example.nutritec.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.nutritec.R;
+import com.example.nutritec.adapters.Recipe1Adapter;
+import com.example.nutritec.adapters.Recipe2Adapter;
+import com.example.nutritec.interfaces.RecipeRestAPI;
+import com.example.nutritec.models.Recipe;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RecipesActivity extends AppCompatActivity {
 
@@ -16,6 +31,10 @@ public class RecipesActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
 
     private Button addRecipeButton;
+
+    private List<Recipe> recipeList;
+
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +55,36 @@ public class RecipesActivity extends AppCompatActivity {
 
         });
 
+        recyclerView = findViewById(R.id.recyclerViewRecipes);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        recipeList = new ArrayList<>();
+
+        // QUITAR
+        for(int i = 0; i < 5; i++) {
+
+            Recipe recipe = new Recipe();
+
+            recipe.setNumber(i);
+            recipe.setName("Pinto");
+
+            recipeList.add(recipe);
+
+        }
+
+        RE1(MainActivity.getPatient().getEmail());
+
+        Recipe2Adapter recipe2Adapter = new Recipe2Adapter(RecipesActivity.this, recipeList);
+
+        recyclerView.setAdapter(recipe2Adapter);
+
     }
 
     // Opens the activity where the user can create a new recipe
     private void openRecipesAddRecipeActivity() {
 
-        Intent intent = new Intent(this, RecipesDetailsActivity.class);
+        Intent intent = new Intent(this, RecipesAddRecipeActivity.class);
         startActivity(intent);
 
     }
@@ -100,5 +143,74 @@ public class RecipesActivity extends AppCompatActivity {
         MainActivity.closeDrawer(drawerLayout);
 
     }
+
+    public List<Recipe> getRecipeList() {
+        return recipeList;
+    }
+
+    public void setRecipeList(List<Recipe> recipeList) {
+        this.recipeList = recipeList;
+    }
+
+    // Gets recipes information from Rest API
+    private void RE1(String email) {
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+
+        RecipeRestAPI recipeRestAPI = retrofit.create(RecipeRestAPI.class);
+
+        Call<List<Recipe>> getCall = recipeRestAPI.RE1(email);
+        getCall.enqueue(new Callback<List<Recipe>>() {
+            @Override
+            public void onResponse(Call<List<Recipe>> call, retrofit2.Response<List<Recipe>> response) {
+
+                try {
+
+                    if (response.isSuccessful()) {
+
+                        List<Recipe> recipeListResponse = response.body();
+
+                        setRecipeList(recipeListResponse);
+
+                    } else {
+
+                        Toast.makeText(RecipesActivity.this, "Error: Recipes GET Failure", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                } catch (Exception exception) {
+
+                    Toast.makeText(RecipesActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Recipe>> call, Throwable t) {
+
+                Toast.makeText(RecipesActivity.this, "Connection Failed", Toast.LENGTH_SHORT).show();
+
+            }
+
+        });
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

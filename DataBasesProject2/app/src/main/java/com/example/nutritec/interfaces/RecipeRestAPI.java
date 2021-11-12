@@ -51,7 +51,7 @@ public interface RecipeRestAPI {
            where number is the number of the recipe
     */
     @GET("/api/Recipe/getproductsin/{number}")
-    public Call<List<Recipe>> RE4(@Path("number") int number);
+    public Call<List<Product>> RE4(@Path("number") int number);
 
     /*
       RE.5
@@ -60,7 +60,7 @@ public interface RecipeRestAPI {
            where number is the number of the recipe
     */
     @GET("/api/Recipe/getproductsnotin/{number}")
-    public Call<List<Recipe>> RE5(@Path("number") int number);
+    public Call<List<Product>> RE5(@Path("number") int number);
 
     /*
       RE.6
@@ -70,9 +70,9 @@ public interface RecipeRestAPI {
            of the product and servings is the amount of times the product is in the recipe
     */
     @POST("/api/Recipe/newproductinrecipe/{number}/{barcode}/{servings}")
-    public Call<Recipe> RE6(@Path("number") int number,
-                            @Path("barcode") int barcode,
-                            @Path("servings") int servings);
+    public Call<Product> RE6(@Path("number") int number,
+                             @Path("barcode") int barcode,
+                             @Path("servings") int servings);
 
     /*
       RE.7
@@ -83,7 +83,7 @@ public interface RecipeRestAPI {
     */
     @GET("/api/Recipe/noconsumption/{patientEmail}/{day}/{meal}")
     public Call<List<Recipe>> RE7(@Path("patientEmail") String patientEmail,
-                                   @Path("day") String day,
-                                   @Path("meal") String meal);
+                                  @Path("day") String day,
+                                  @Path("meal") String meal);
 
 }

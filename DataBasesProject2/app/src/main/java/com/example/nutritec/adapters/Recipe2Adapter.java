@@ -53,7 +53,7 @@ public class Recipe2Adapter extends RecyclerView.Adapter<Recipe2Adapter.Recipe2V
             @Override
             public void onClick(View view) {
 
-                openRecipesDetailsActivity();
+                openRecipesDetailsActivity(recipe.getName(), recipe.getNumber());
 
             }
         });
@@ -88,9 +88,13 @@ public class Recipe2Adapter extends RecyclerView.Adapter<Recipe2Adapter.Recipe2V
     }
 
     // Opens the activity where the user can see the details for the selected recipe
-    private void openRecipesDetailsActivity() {
+    private void openRecipesDetailsActivity(String name, int number) {
 
         Intent intent = new Intent(context, RecipesDetailsActivity.class);
+
+        RecipesDetailsActivity.setName(name);
+        RecipesDetailsActivity.setNumber(number);
+
         context.startActivity(intent);
 
     }
