@@ -29,10 +29,10 @@ public interface RecipeRestAPI {
            and day and meal are the time of consumption.
     */
     @POST("/api/Recipe/consumption/addrecipe/{number}/{patientEmail}/{day}/{meal}")
-    public Call<Recipe> RE2(@Path("number") int number,
-                            @Path("patientEmail") String patientEmail,
-                            @Path("day") String day,
-                            @Path("meal") String meal);
+    public Call<Void> RE2(@Path("number") int number,
+                          @Path("patientEmail") String patientEmail,
+                          @Path("day") String day,
+                          @Path("meal") String meal);
 
     /*
       RE.3

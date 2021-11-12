@@ -6,7 +6,11 @@ import com.example.nutritec.models.Product1;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface ProductRestAPI {
@@ -30,12 +34,12 @@ public interface ProductRestAPI {
            patient that consumed the product, day and meal correspond to the time of consumption
            and servings is the amount of product consumed.
     */
-    @GET("/api/Product/consumption/addproduct/{barcode}/{patientEmail}/{day}/{meal}/{servings}")
-    public Call<Product2> PR9(@Path("barcode") int barcode,
-                              @Path("patientEmail") String patientEmail,
-                              @Path("day") String day,
-                              @Path("meal") String meal,
-                              @Path("servings") int servings);
+    @POST("/api/Product/consumption/addproduct/{barcode}/{patientEmail}/{day}/{meal}/{servings}")
+    public Call<Void> PR9(@Path("barcode") int barcode,
+                          @Path("patientEmail") String patientEmail,
+                          @Path("day") String day,
+                          @Path("meal") String meal,
+                          @Path("servings") int servings);
 
     /*
       PR.10

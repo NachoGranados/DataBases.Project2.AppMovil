@@ -149,6 +149,9 @@ public class LoginActivity extends AppCompatActivity {
 
                             Toast.makeText(LoginActivity.this, "Successful Login", Toast.LENGTH_SHORT).show();
 
+                            emailText.setText("");
+                            passwordText.setText("");
+
                             openMainActivity(patient);
 
                         } else {

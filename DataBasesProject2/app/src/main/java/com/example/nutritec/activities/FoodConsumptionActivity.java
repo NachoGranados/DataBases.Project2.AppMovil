@@ -231,7 +231,7 @@ public class FoodConsumptionActivity extends AppCompatActivity {
 
         feedbackContentTextView.setText("");
 
-        //CO2(MainActivity.getPatient().getEmail(), day, meal);
+        CO2(MainActivity.getPatient().getEmail(), day, meal);
 
         commentEditText = findViewById(R.id.editTextFoodConsumptionComment);
 
@@ -383,8 +383,6 @@ public class FoodConsumptionActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
 
                         List<Product1> product1ListResponse = response.body();
-
-                        Toast.makeText(FoodConsumptionActivity.this, Integer.toString(product1ListResponse.size()), Toast.LENGTH_SHORT).show();
 
                         Product1Adapter product1Adapter = new Product1Adapter(FoodConsumptionActivity.this, product1ListResponse);
 

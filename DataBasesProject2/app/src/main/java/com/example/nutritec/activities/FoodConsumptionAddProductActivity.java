@@ -35,8 +35,6 @@ public class FoodConsumptionAddProductActivity extends AppCompatActivity {
     private Button goBackButton;
 
     // Global variables
-    private List<Product2> product2List;
-
     private static int servings = 1;
 
     private RecyclerView recyclerView;
@@ -81,33 +79,7 @@ public class FoodConsumptionAddProductActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        product2List = new ArrayList<>();
-
-        /*
-        // QUITAR
-        for(int i = 0; i < 5; i++) {
-
-            Product product = new Product();
-
-            product.setBarcode(i);
-            product.setName("Rice");
-            product.setDescription("A serving of rice");
-
-            productList.add(product);
-
-        }
-
-         */
-
         PR10(MainActivity.getPatient().getEmail(), FoodConsumptionActivity.getDay(), FoodConsumptionActivity.getMeal());
-
-        /*
-
-        Product2Adapter product2Adapter = new Product2Adapter(FoodConsumptionAddProductActivity.this, productList);
-
-        recyclerView.setAdapter(product2Adapter);
-
-         */
 
         goBackButton = (Button) findViewById(R.id.buttonFoodConsumptionAddProductGoBack);
         goBackButton.setOnClickListener(new View.OnClickListener() {
@@ -120,14 +92,6 @@ public class FoodConsumptionAddProductActivity extends AppCompatActivity {
 
         });
 
-    }
-
-    public List<Product2> getProductList() {
-        return product2List;
-    }
-
-    public void setProductList(List<Product2> product2List) {
-        this.product2List = product2List;
     }
 
     private void goBackToFoodConsumptionActivity() {

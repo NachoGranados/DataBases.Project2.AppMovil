@@ -27,8 +27,6 @@ public class FoodConsumptionAddRecipeActivity extends AppCompatActivity {
     // Variables to control XML items
     private Button goBackButton;
 
-    private List<Recipe> recipeList;
-
     private RecyclerView recyclerView;
 
     @Override
@@ -41,25 +39,7 @@ public class FoodConsumptionAddRecipeActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        recipeList = new ArrayList<>();
-
-        // QUITAR
-        for(int i = 0; i < 5; i++) {
-
-            Recipe recipe = new Recipe();
-
-            recipe.setNumber(i);
-            recipe.setName("Pinto");
-
-            recipeList.add(recipe);
-
-        }
-
         RE7(MainActivity.getPatient().getEmail(), FoodConsumptionActivity.getDay(), FoodConsumptionActivity.getMeal());
-
-        Recipe1Adapter recipe1Adapter = new Recipe1Adapter(FoodConsumptionAddRecipeActivity.this, recipeList);
-
-        recyclerView.setAdapter(recipe1Adapter);
 
         // Variables assignment to control XML items
         goBackButton = (Button) findViewById(R.id.buttonFoodConsumptionAddRecipeGoBack);
@@ -75,14 +55,6 @@ public class FoodConsumptionAddRecipeActivity extends AppCompatActivity {
 
     }
 
-    public List<Recipe> getRecipeList() {
-        return recipeList;
-    }
-
-    public void setRecipeList(List<Recipe> recipeList) {
-        this.recipeList = recipeList;
-    }
-
     private void goBackToFoodConsumptionActivity() {
 
         this.finish();
@@ -92,7 +64,7 @@ public class FoodConsumptionAddRecipeActivity extends AppCompatActivity {
     // Gets recipes information from Rest API
     private void RE7(String email, String day, String meal) {
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000")
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://nutritecrg.azurewebsites.net")
                 .addConverterFactory(GsonConverterFactory.create()).build();
 
         RecipeRestAPI recipeRestAPI = retrofit.create(RecipeRestAPI.class);
@@ -108,7 +80,9 @@ public class FoodConsumptionAddRecipeActivity extends AppCompatActivity {
 
                         List<Recipe> recipeListResponse = response.body();
 
-                        setRecipeList(recipeListResponse);
+                        Recipe1Adapter recipe1Adapter = new Recipe1Adapter(FoodConsumptionAddRecipeActivity.this, recipeListResponse);
+
+                        recyclerView.setAdapter(recipe1Adapter);
 
                     } else {
 
@@ -134,26 +108,5 @@ public class FoodConsumptionAddRecipeActivity extends AppCompatActivity {
         });
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

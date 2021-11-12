@@ -18,10 +18,14 @@ import com.example.nutritec.activities.MainActivity;
 import com.example.nutritec.interfaces.ProductRestAPI;
 import com.example.nutritec.models.Product2;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -59,8 +63,6 @@ public class Product2Adapter extends RecyclerView.Adapter<Product2Adapter.Produc
         holder.addProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Toast.makeText(context, "Product Addition Successful", Toast.LENGTH_SHORT).show();
 
                 PR9(product2.getBarcode(),
                     MainActivity.getPatient().getEmail(),
@@ -105,15 +107,15 @@ public class Product2Adapter extends RecyclerView.Adapter<Product2Adapter.Produc
     // Posts the given product into the Rest API
     private void PR9(int barcode, String email, String day, String meal, int servings) {
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:5000")
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://nutritecrg.azurewebsites.net")
                 .addConverterFactory(GsonConverterFactory.create()).build();
 
         ProductRestAPI productRestAPI = retrofit.create(ProductRestAPI.class);
 
-        Call<Product2> postCall = productRestAPI.PR9(barcode, email, day, meal, servings);
-        postCall.enqueue(new Callback<Product2>() {
+        Call<Void> postCall = productRestAPI.PR9(barcode, email, day, meal, servings);
+        postCall.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Product2> call, retrofit2.Response<Product2> response) {
+            public void onResponse(Call<Void> call, retrofit2.Response<Void> response) {
 
                 try {
 
@@ -136,7 +138,7 @@ public class Product2Adapter extends RecyclerView.Adapter<Product2Adapter.Produc
             }
 
             @Override
-            public void onFailure(Call<Product2> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
 
                 Toast.makeText(context, "Connection Failed", Toast.LENGTH_SHORT).show();
 
