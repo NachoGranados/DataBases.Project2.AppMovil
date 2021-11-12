@@ -61,11 +61,10 @@ public class FoodConsumptionActivity extends AppCompatActivity {
     private Button addRecipeButton;
 
     // Global variables
-    private String day;
-    private String meal;
+    private static String day;
+    private static String meal;
 
     private List<Product> productList;
-
     private List<Comment> commentList;
 
     private RecyclerView recyclerView;
@@ -380,6 +379,22 @@ public class FoodConsumptionActivity extends AppCompatActivity {
         // Close drawer
         MainActivity.closeDrawer(drawerLayout);
 
+    }
+
+    public static String getDay() {
+        return day;
+    }
+
+    public static void setDay(String day) {
+        FoodConsumptionActivity.day = day;
+    }
+
+    public static String getMeal() {
+        return meal;
+    }
+
+    public static void setMeal(String meal) {
+        FoodConsumptionActivity.meal = meal;
     }
 
     public List<Product> getProductList() {

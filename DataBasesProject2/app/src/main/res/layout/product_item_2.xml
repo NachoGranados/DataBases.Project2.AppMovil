@@ -15,32 +15,25 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textViewProductItem2Barcode"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:text="Barcode: 1000"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"/>
 
-            <TextView
-                android:id="@+id/textViewProductItem2Barcode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
-                android:text="Barcode: 1000"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <TextView
-                android:id="@+id/textViewProductItem2Name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="64dp"
-                android:layout_marginTop="16dp"
-                android:text="Name: Rice"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-        </LinearLayout>
+        <TextView
+            android:id="@+id/textViewProductItem2Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Name: Rice"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:id="@+id/textViewProductItem2Description"
