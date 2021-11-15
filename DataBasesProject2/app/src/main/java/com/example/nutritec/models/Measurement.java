@@ -4,13 +4,13 @@ public class Measurement {
 
     private String date;
     private String patientEmail;
-    private int height;
-    private int weight;
-    private int hips;
-    private int waist;
-    private int neck;
-    private int fatPercentage;
-    private int musclePercentage;
+    private float height;
+    private float weight;
+    private float hips;
+    private float waist;
+    private float neck;
+    private float fatPercentage;
+    private float musclePercentage;
 
     public String getDate() {
         return date;
@@ -28,59 +28,59 @@ public class Measurement {
         this.patientEmail = patientEmail;
     }
 
-    public int getHeight() {
+    public float getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(float height) {
         this.height = height;
     }
 
-    public int getWeight() {
+    public float getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(float weight) {
         this.weight = weight;
     }
 
-    public int getHips() {
+    public float getHips() {
         return hips;
     }
 
-    public void setHips(int hips) {
+    public void setHips(float hips) {
         this.hips = hips;
     }
 
-    public int getWaist() {
+    public float getWaist() {
         return waist;
     }
 
-    public void setWaist(int waist) {
+    public void setWaist(float waist) {
         this.waist = waist;
     }
 
-    public int getNeck() {
+    public float getNeck() {
         return neck;
     }
 
-    public void setNeck(int neck) {
+    public void setNeck(float neck) {
         this.neck = neck;
     }
 
-    public int getFatPercentage() {
+    public float getFatPercentage() {
         return fatPercentage;
     }
 
-    public void setFatPercentage(int fatPercentage) {
+    public void setFatPercentage(float fatPercentage) {
         this.fatPercentage = fatPercentage;
     }
 
-    public int getMusclePercentage() {
+    public float getMusclePercentage() {
         return musclePercentage;
     }
 
-    public void setMusclePercentage(int musclePercentage) {
+    public void setMusclePercentage(float musclePercentage) {
         this.musclePercentage = musclePercentage;
     }
 }

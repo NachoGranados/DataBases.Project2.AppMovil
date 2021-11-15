@@ -31,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText birthDateText;
     private EditText passwordText;
 
+    /*
     private EditText dateText;
     private EditText heightText;
     private EditText weightText;
@@ -39,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText neckText;
     private EditText fatPercentageText;
     private EditText musclePercentageText;
+     */
 
     private Button registerButton;
 
@@ -56,6 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
         birthDateText = findViewById(R.id.editTextRegisterBirthDate);
         passwordText = findViewById(R.id.editTextRegisterPassword);
 
+        /*
         dateText = findViewById(R.id.editTextRegisterDate);
         heightText = findViewById(R.id.editTextRegisterHeight);
         weightText = findViewById(R.id.editTextRegisterWeight);
@@ -64,6 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
         neckText = findViewById(R.id.editTextRegisterNeck);
         fatPercentageText = findViewById(R.id.editTextRegisterFatPercentage);
         musclePercentageText = findViewById(R.id.editTextRegisterMusclePercentage);
+        */
 
         registerButton = (Button) findViewById(R.id.buttonRegisterRegister);
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +82,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String birthDate = birthDateText.getText().toString();
                 String password = passwordText.getText().toString();
 
+                /*
                 String date = dateText.getText().toString();
                 String height = heightText.getText().toString();
                 String weight = weightText.getText().toString();
@@ -87,11 +92,13 @@ public class RegisterActivity extends AppCompatActivity {
                 String fatPercentage = fatPercentageText.getText().toString();
                 String musclePercentage = musclePercentageText.getText().toString();
 
+                 */
+
                 if(!email.equals("") && !username.equals("") && !firstName.equals("") &&
                    !lastName1.equals("") && !lastName2.equals("") && !birthDate.equals("") &&
-                   !password.equals("") && !date.equals("") && !height.equals("") &&
-                   !weight.equals("") && !hips.equals("") && !waist.equals("") &&
-                   !neck.equals("") && !fatPercentage.equals("") && !musclePercentage.equals("")) {
+                   !password.equals("")) { //&& !date.equals("") && !height.equals("") &&
+                   //!weight.equals("") && !hips.equals("") && !waist.equals("") &&
+                   //!neck.equals("") && !fatPercentage.equals("") && !musclePercentage.equals("")) {
 
                     Patient patient = new Patient();
 
@@ -103,21 +110,25 @@ public class RegisterActivity extends AppCompatActivity {
                     patient.setBirthDate(birthDate);
                     patient.setPassowrd(password);
 
+                    /*
+
                     PA2(patient);
 
                     Measurement measurement = new Measurement();
 
                     measurement.setDate(date);
                     measurement.setPatientEmail(email);
-                    measurement.setHeight(Integer.parseInt(height));
-                    measurement.setWeight(Integer.parseInt(weight));
-                    measurement.setHips(Integer.parseInt(hips));
-                    measurement.setWaist(Integer.parseInt(waist));
-                    measurement.setNeck(Integer.parseInt(neck));
-                    measurement.setFatPercentage(Integer.parseInt(fatPercentage));
-                    measurement.setMusclePercentage(Integer.parseInt(musclePercentage));
+                    measurement.setHeight(Float.parseFloat(height));
+                    measurement.setWeight(Float.parseFloat(weight));
+                    measurement.setHips(Float.parseFloat(hips));
+                    measurement.setWaist(Float.parseFloat(waist));
+                    measurement.setNeck(Float.parseFloat(neck));
+                    measurement.setFatPercentage(Float.parseFloat(fatPercentage));
+                    measurement.setMusclePercentage(Float.parseFloat(musclePercentage));
 
                     ME3(measurement);
+
+                    */
 
                 } else {
 

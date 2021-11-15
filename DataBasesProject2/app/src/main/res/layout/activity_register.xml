@@ -7,42 +7,24 @@
     android:layout_height="match_parent"
     tools:context=".activities.RegisterActivity">
 
-    <ScrollView
+        <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="-30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints">
+        android:layout_height="300dp"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/logo" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="286dp"
-                android:layout_marginTop="20dp"
-                app:srcCompat="@drawable/logo" />
-
-            <TextView
-                android:id="@+id/textViewPatientDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="PATIENT DETAILS"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/editTextRegisterEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="300dp"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/custom_input"
                 android:drawableStart="@drawable/ic_email"
@@ -197,200 +179,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="584dp" />
 
-            <TextView
-                android:id="@+id/textViewInitialMeasurementDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="INITIAL MEASUREMENT DETAILS"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/editTextRegisterDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/custom_input"
-                android:drawableStart="@drawable/ic_date"
-                android:drawablePadding="12dp"
-                android:ems="10"
-                android:hint="DATE"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="393dp" />
-
-            <EditText
-                android:id="@+id/editTextRegisterHeight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/custom_input"
-                android:drawableStart="@drawable/ic_measurement"
-                android:drawablePadding="12dp"
-                android:ems="10"
-                android:hint="HEIGHT (m)"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="393dp" />
-
-            <EditText
-                android:id="@+id/editTextRegisterWeight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/custom_input"
-                android:drawableStart="@drawable/ic_measurement"
-                android:drawablePadding="12dp"
-                android:ems="10"
-                android:hint="WEIGHT (Kg)"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="393dp" />
-
-            <EditText
-                android:id="@+id/editTextRegisterHips"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/custom_input"
-                android:drawableStart="@drawable/ic_measurement"
-                android:drawablePadding="12dp"
-                android:ems="10"
-                android:hint="HIPS (cm)"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="393dp" />
-
-            <EditText
-                android:id="@+id/editTextRegisterWaist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/custom_input"
-                android:drawableStart="@drawable/ic_measurement"
-                android:drawablePadding="12dp"
-                android:ems="10"
-                android:hint="WAIST (cm)"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="393dp" />
-
-            <EditText
-                android:id="@+id/editTextRegisterNeck"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/custom_input"
-                android:drawableStart="@drawable/ic_measurement"
-                android:drawablePadding="12dp"
-                android:ems="10"
-                android:hint="NECK (cm)"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="393dp" />
-
-            <EditText
-                android:id="@+id/editTextRegisterFatPercentage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/custom_input"
-                android:drawableStart="@drawable/ic_measurement"
-                android:drawablePadding="12dp"
-                android:ems="10"
-                android:hint="FAT PERCENTAGE (%)"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="393dp" />
-
-            <EditText
-                android:id="@+id/editTextRegisterMusclePercentage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/custom_input"
-                android:drawableStart="@drawable/ic_measurement"
-                android:drawablePadding="12dp"
-                android:ems="10"
-                android:hint="MUSCLE PERCENTAGE (%)"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="393dp" />
-
             <Button
                 android:id="@+id/buttonRegisterRegister"
                 android:layout_width="match_parent"
@@ -407,7 +195,5 @@
                 tools:layout_editor_absoluteY="645dp" />
 
         </LinearLayout>
-
-    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

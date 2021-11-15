@@ -18,10 +18,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Home"
+            android:text="Welcome to NutriTEC"
             android:textSize="50sp"
             android:textStyle="bold"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 
