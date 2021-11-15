@@ -110,9 +110,9 @@ public class RegisterActivity extends AppCompatActivity {
                     patient.setBirthDate(birthDate);
                     patient.setPassowrd(password);
 
-                    /*
-
                     PA2(patient);
+
+                    /*
 
                     Measurement measurement = new Measurement();
 
@@ -167,6 +167,8 @@ public class RegisterActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
 
                         Toast.makeText(RegisterActivity.this, "Successful Register Patient", Toast.LENGTH_SHORT).show();
+
+                        openLoginActivity();
 
                     } else {
 
